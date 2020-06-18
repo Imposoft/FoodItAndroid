@@ -48,8 +48,9 @@ public class FirstFragment extends Fragment {
                         .setAction("Action", null).show();
                 String textMenu = textBox.getText().toString();
 
-                getTestMenu();
+                //getTestMenu();
                 Menu menu = new Menu(textMenu);
+                postTestMenu(menu);
                 //NavHostFragment.findNavController(FirstFragment.this)
                         //.navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
@@ -74,6 +75,34 @@ public class FirstFragment extends Fragment {
                 }
                 Menu menu = response.body();
                 console.setText("Tu menu" + menu.getMenuText());
+                System.out.println(menu.getMenuText());
+            }
+
+            @Override
+            public void onFailure(Call<Menu> call, Throwable t) {
+                console.setText(t.getMessage());
+            }
+        });
+    }
+
+    private void postTestMenu(Menu menu) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://imposoft.es:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        FoodItAPI foodItAPI = retrofit.create(FoodItAPI.class);
+
+        Call<Menu> menuCall = foodItAPI.createNewMenu(menu);
+        menuCall.enqueue(new Callback<Menu>() {
+            @Override
+            public void onResponse(Call<Menu> call, Response<Menu> response) {
+                if(!response.isSuccessful()) {
+                    console.setText("Error: " + response.code());
+                    return;
+                }
+                Menu menu = response.body();
+                console.setText("Éxito: " + response.code());
                 System.out.println(menu.getMenuText());
             }
 

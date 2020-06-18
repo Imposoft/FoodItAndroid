@@ -1,17 +1,16 @@
 package es.imposoft.foodit.interfaces;
 
-import java.util.List;
-
 import es.imposoft.foodit.model.Menu;
-import es.imposoft.foodit.model.Posts;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public interface FoodItAPI {
-    @GET("posts")
-    Call<List<Posts>> getPosts();
+    @POST("createMenu")
+    Call<Menu> createNewMenu(@Body Menu menu);
 
-    @GET("greeting")
+    @GET("testMenu")
     Call<Menu> getTestMenu();
 
 }
