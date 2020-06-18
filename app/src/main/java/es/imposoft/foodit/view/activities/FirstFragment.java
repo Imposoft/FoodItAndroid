@@ -52,7 +52,18 @@ public class FirstFragment extends Fragment {
                 Menu menu = new Menu(textMenu);
                 postTestMenu(menu);
                 //NavHostFragment.findNavController(FirstFragment.this)
-                        //.navigate(R.id.action_FirstFragment_to_SecondFragment);
+                //.navigate(R.id.action_FirstFragment_to_SecondFragment);
+            }
+        });
+        view.findViewById(R.id.button_downloadMenu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "You downloaded the menu", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+                getTestMenu();
+                //NavHostFragment.findNavController(FirstFragment.this)
+                //.navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
     }
@@ -70,12 +81,13 @@ public class FirstFragment extends Fragment {
             @Override
             public void onResponse(Call<Menu> call, Response<Menu> response) {
                 if(!response.isSuccessful()) {
-                    console.setText("Error in execution" + response.code());
+                    console.setText("Error: " + response.code());
                     return;
                 }
                 Menu menu = response.body();
-                console.setText("Tu menu" + menu.getMenuText());
-                System.out.println(menu.getMenuText());
+                console.setText("Éxito: " + response.code());
+                //String textMenu = menu.getMenuText();
+                textBox.setText(menu.getMenuText());
             }
 
             @Override
@@ -103,7 +115,6 @@ public class FirstFragment extends Fragment {
                 }
                 Menu menu = response.body();
                 console.setText("Éxito: " + response.code());
-                System.out.println(menu.getMenuText());
             }
 
             @Override
