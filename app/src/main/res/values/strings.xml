@@ -22,5 +22,7 @@
     <string name="section">SECCIÓN</string>
     <string name="dish">PLATO</string>
     <string name="price">Precio: </string>
-    <string name="allergens">"Alérgenos: "</string>
+    <string name="allergens">Alérgenos: </string>
+    <string name="menu_">Menú: </string>
+    <string name="category">Categoría: </string>
 </resources>
