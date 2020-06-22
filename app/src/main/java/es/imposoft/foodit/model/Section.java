@@ -1,5 +1,8 @@
 package es.imposoft.foodit.model;
 
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Section {
@@ -7,12 +10,25 @@ public class Section {
     int id;
     String name, description;
     List<Dish> dishes;
+    static List<Section> sections;
 
-    public Section(int id, String name, String description, List<Dish> dishes) {
+
+    public Section(int id, String name, String description, @Nullable List<Dish> dishes) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.dishes = dishes;
+    }
+
+    public static Section getSectionFromName(String name) {
+        for(Section section : sections) {
+            if (section.getName().equals(name)) return section;
+        }
+        return null;
+    }
+
+    public static ArrayList<Section> getAvailableSections() {
+        return null;
     }
 
     public int getId() {
@@ -46,6 +62,8 @@ public class Section {
     public void setDishes(List<Dish> dishes) {
         this.dishes = dishes;
     }
+
+    public List<Section> getSectionsFromMenu() { return sections; }
 
     @Override
     public String toString() {

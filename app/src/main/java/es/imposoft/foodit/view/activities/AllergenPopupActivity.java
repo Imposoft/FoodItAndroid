@@ -14,7 +14,7 @@ import java.util.List;
 import es.imposoft.foodit.R;
 import es.imposoft.foodit.model.Allergen;
 
-public class PopupActivity extends AppCompatActivity {
+public class AllergenPopupActivity extends AppCompatActivity {
 
     private static boolean[] checked = new boolean[14];
     List<CheckBox> checkboxes = new ArrayList<>();

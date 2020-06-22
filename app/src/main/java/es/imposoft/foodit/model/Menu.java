@@ -1,5 +1,7 @@
 package es.imposoft.foodit.model;
 
+import androidx.annotation.Nullable;
+
 import java.util.List;
 
 public class Menu {
@@ -10,7 +12,7 @@ public class Menu {
 
     private String menuText;
 
-    public Menu(List<Section> sections, String name, String description, int id) {
+    public Menu(@Nullable List<Section> sections, int id, String name, String description) {
         this.sections = sections;
         this.name = name;
         this.description = description;

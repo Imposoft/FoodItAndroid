@@ -1,5 +1,6 @@
 package es.imposoft.foodit.view.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -26,6 +27,7 @@ public class DishesCreationActivity extends AppCompatActivity {
     Spinner spinnerSections;
     EditText name, description, price;
     static List<Allergen> allergenList;
+    Section sectionSelected;
     int id = 0;
 
     @Override
@@ -45,8 +47,8 @@ public class DishesCreationActivity extends AppCompatActivity {
         spinnerSections.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String sectionSelected = parent.getItemAtPosition(position).toString();
-                Toast.makeText(parent.getContext(),"Seleccionado: " + sectionSelected, Toast.LENGTH_SHORT).show();
+                sectionSelected = Section.getSectionFromName(parent.getItemAtPosition(position).toString());
+                Toast.makeText(parent.getContext(),"Seleccionado: " + sectionSelected.toString(), Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView <?> parent) {
@@ -56,8 +58,7 @@ public class DishesCreationActivity extends AppCompatActivity {
     }
 
     private void createSpinners() {
-        ArrayList<Section> availableSections = new ArrayList<>();
-        //availableSections = getAvailableSections();
+        ArrayList<Section> availableSections = Section.getAvailableSections();
         ArrayList<String> arrayList = new ArrayList<>();
         for(Section section : availableSections) arrayList.add(section.getName());
 
@@ -68,7 +69,7 @@ public class DishesCreationActivity extends AppCompatActivity {
     }
 
     public void openAllergensPopup(View view) {
-        Intent intent = new Intent(this, PopupActivity.class);
+        Intent intent = new Intent(this, AllergenPopupActivity.class);
         startActivity(intent);
 
     }
@@ -84,7 +85,12 @@ public class DishesCreationActivity extends AppCompatActivity {
     public void saveDish(View view) {
         System.out.println(allergenList.toString());
         Dish dish = new Dish(id, name.getText().toString(), description.getText().toString(), allergenList, Double.parseDouble(String.valueOf(price.getText())));
+        addDishToSection(dish);
         System.out.println(dish.toString());
+    }
+
+    public void addDishToSection(Dish dish) {
+        sectionSelected.getDishes().add(dish);
     }
 
 }
