@@ -17,6 +17,7 @@ import java.util.List;
 
 import es.imposoft.foodit.R;
 import es.imposoft.foodit.model.Allergen;
+import es.imposoft.foodit.model.Dish;
 import es.imposoft.foodit.model.Section;
 
 public class DishesCreationActivity extends AppCompatActivity {
@@ -73,11 +74,10 @@ public class DishesCreationActivity extends AppCompatActivity {
         allergenList = list;
     }
 
-
-
     public void saveDish(View view) {
-        System.out.println(getAllergenList().size());
+        System.out.println(allergenList.toString());
+        Dish dish = new Dish(0, "name", "description", allergenList, 6.5);
+        System.out.println(dish.toString());
     }
-
 
 }

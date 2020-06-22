@@ -17,13 +17,8 @@ import es.imposoft.foodit.model.Allergen;
 public class PopupActivity extends AppCompatActivity {
 
     private static boolean[] checked = new boolean[14];
-    public static List<Allergen> selectedAllergens;
     List<CheckBox> checkboxes = new ArrayList<>();
     CheckBox c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14;
-
-    static {
-        Arrays.fill(checked, false);
-    }
 
 
     @Override
@@ -46,59 +41,78 @@ public class PopupActivity extends AppCompatActivity {
         c13 = findViewById(R.id.ALTRAMUCES); checkboxes.add(c13);
         c14 = findViewById(R.id.MOLUSCOS); checkboxes.add(c14);
 
+        Arrays.fill(checked, false);
+
+        isSelectedPreviously();
         for(int i = 0; i < checked.length; i++) {
             if (checked[i]) checkboxes.get(i).setChecked(true);
         }
 
-        /*
-        if (checked[0]) c1.setChecked(true);
-        if (checked[1]) c2.setChecked(true);
-        if (checked[2]) c3.setChecked(true);
-        if (checked[3]) c4.setChecked(true);
-        if (checked[4]) c5.setChecked(true);
-        if (checked[5]) c6.setChecked(true);
-        if (checked[6]) c7.setChecked(true);
-        if (checked[7]) c8.setChecked(true);
-        if (checked[8]) c9.setChecked(true);
-        if (checked[9]) c10.setChecked(true);
-        if (checked[10]) c11.setChecked(true);
-        if (checked[11]) c12.setChecked(true);
-        if (checked[12]) c13.setChecked(true);
-        if (checked[13]) c14.setChecked(true);
-         */
 
     }
 
 
     public void createPreferenceList(View view) {
-        List<Allergen> allergens = new ArrayList<>();
-
+        List<Allergen> allergens = DishesCreationActivity.getAllergenList();
+        allergens.clear();
         int i = 0;
         for(CheckBox c : checkboxes) {
             if (c.isChecked()) allergens.add(Allergen.values()[i]);
             i++;
         }
-
-        /*
-        if(c1.isChecked()) { allergens.add(Allergen.GLUTEN); }
-        if(c2.isChecked()) { allergens.add(Allergen.CRUSTACEOS); }
-        if(c3.isChecked()) { allergens.add(Allergen.HUEVOS); }
-        if(c4.isChecked()) { allergens.add(Allergen.PESCADO); }
-        if(c5.isChecked()) { allergens.add(Allergen.CACAHUETES); }
-        if(c6.isChecked()) { allergens.add(Allergen.SOJA); }
-        if(c7.isChecked()) { allergens.add(Allergen.LACTEOS); }
-        if(c8.isChecked()) { allergens.add(Allergen.FRUTOS_DE_CASCARA); }
-        if(c9.isChecked()) { allergens.add(Allergen.APIO); }
-        if(c10.isChecked()) { allergens.add(Allergen.MOSTAZA); }
-        if(c11.isChecked()) { allergens.add(Allergen.GRANOS_DE_SESAMO); }
-        if(c12.isChecked()) { allergens.add(Allergen.SULFITOS); }
-        if(c13.isChecked()) { allergens.add(Allergen.ALTRAMUCES); }
-        if(c14.isChecked()) { allergens.add(Allergen.MOLUSCOS); }
-         */
-
-        PopupActivity.selectedAllergens = allergens;
         DishesCreationActivity.setAllergens(allergens);
-        System.out.println(allergens.size());
+        System.out.println(allergens.toString());
         finish();
+    }
+
+    private void isSelectedPreviously() {
+        List<Allergen> allergens;
+        allergens = DishesCreationActivity.getAllergenList();
+        for (Allergen a : allergens) {
+            switch (a) {
+                case GLUTEN:
+                   checked[0] = true;
+                   break;
+                case CRUSTACEOS:
+                    checked[1] = true;
+                    break;
+                case HUEVOS:
+                    checked[2] = true;
+                    break;
+                case PESCADO:
+                    checked[3] = true;
+                    break;
+                case CACAHUETES:
+                    checked[4] = true;
+                    break;
+                case SOJA:
+                    checked[5] = true;
+                    break;
+                case LACTEOS:
+                    checked[6] = true;
+                    break;
+                case FRUTOS_DE_CASCARA:
+                    checked[7] = true;
+                    break;
+                case APIO:
+                    checked[8] = true;
+                    break;
+                case MOSTAZA:
+                    checked[9] = true;
+                    break;
+                case GRANOS_DE_SESAMO:
+                    checked[10] = true;
+                    break;
+                case SULFITOS:
+                    checked[11] = true;
+                    break;
+                case ALTRAMUCES:
+                    checked[12] = true;
+                    break;
+                case MOLUSCOS:
+                    checked[13] = true;
+                    break;
+            }
+        }
     }
 }
