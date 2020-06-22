@@ -60,4 +60,14 @@ public class Menu {
     public void setMenuText(String menuText) {
         this.menuText = menuText;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "sections=" + sections +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

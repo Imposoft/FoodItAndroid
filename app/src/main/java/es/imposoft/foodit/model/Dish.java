@@ -68,7 +68,15 @@ public class Dish {
         this.image = image;
     }
 
+    @Override
     public String toString() {
-        return name + " " + description + " " + allergens.size() + " " + price;
+        return "Dish{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", allergens=" + allergens +
+                ", price=" + price +
+                ", image=" + image +
+                '}';
     }
 }

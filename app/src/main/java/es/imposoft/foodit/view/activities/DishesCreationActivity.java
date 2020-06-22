@@ -8,6 +8,7 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -23,7 +24,9 @@ import es.imposoft.foodit.model.Section;
 public class DishesCreationActivity extends AppCompatActivity {
 
     Spinner spinnerSections;
+    EditText name, description, price;
     static List<Allergen> allergenList;
+    int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,10 @@ public class DishesCreationActivity extends AppCompatActivity {
 
         spinnerSections = findViewById(R.id.spinner_sections);
         createSpinners();
+
+        name = findViewById(R.id.editText_name);
+        description = findViewById(R.id.editText_description);
+        price = findViewById(R.id.editText_price);
 
         spinnerSections.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -76,7 +83,7 @@ public class DishesCreationActivity extends AppCompatActivity {
 
     public void saveDish(View view) {
         System.out.println(allergenList.toString());
-        Dish dish = new Dish(0, "name", "description", allergenList, 6.5);
+        Dish dish = new Dish(id, name.getText().toString(), description.getText().toString(), allergenList, Double.parseDouble(String.valueOf(price.getText())));
         System.out.println(dish.toString());
     }
 
