@@ -61,14 +61,14 @@ public class FirstFragment extends Fragment {
                 Snackbar.make(view, "You downloaded the menu", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                getTestMenu();
+                loadMenu();
                 //NavHostFragment.findNavController(FirstFragment.this)
                 //.navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
     }
 
-    private void getTestMenu() {
+    private void loadMenu() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://imposoft.es:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -76,7 +76,7 @@ public class FirstFragment extends Fragment {
 
         FoodItAPI foodItAPI = retrofit.create(FoodItAPI.class);
 
-        Call<Menu> menuCall = foodItAPI.getTestMenu();
+        Call<Menu> menuCall = foodItAPI.loadMenu();
         menuCall.enqueue(new Callback<Menu>() {
             @Override
             public void onResponse(Call<Menu> call, Response<Menu> response) {

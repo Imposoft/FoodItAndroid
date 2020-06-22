@@ -10,7 +10,8 @@ public interface FoodItAPI {
     @POST("createMenu")
     Call<Menu> createNewMenu(@Body Menu menu);
 
-    @GET("testMenu")
-    Call<Menu> getTestMenu();
+    @GET("loadMenu")
+    Call<Menu> loadMenu();
+
 
 }
