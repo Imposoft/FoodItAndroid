@@ -6,27 +6,17 @@ import java.util.List;
 
 public class Dish {
 
-    int id;
     String name, description;
     List<Allergen> allergens;
     float price;
     Image image;
 
-    public Dish(int id, String name, String description, List<Allergen> allergens, float price, Image image) {
-        this.id = id;
+    public Dish(String name, String description, List<Allergen> allergens, float price, Image image) {
         this.name = name;
         this.description = description;
         this.allergens = allergens;
         this.price = price;
         this.image = image;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
