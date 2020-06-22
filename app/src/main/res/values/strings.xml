@@ -12,4 +12,15 @@
     <string name="action_close">Close</string>
     <string name="action_open">Open</string>
     <string name="send">Enviar</string>
+    <string name="create">Crear</string>
+    <string name="menu">MENÚ</string>
+    <string name="name">Nombre: </string>
+    <string name="name_">nombre</string>
+    <string name="sections">Secciones: </string>
+    <string name="description">Descripción: </string>
+    <string name="description_">descripción</string>
+    <string name="section">SECCIÓN</string>
+    <string name="dish">PLATO</string>
+    <string name="price">Precio: </string>
+    <string name="allergens">"Alérgenos: "</string>
 </resources>
