@@ -1,6 +1,6 @@
 package es.imposoft.foodit.model;
 
-enum Allergen {
+public enum Allergen {
     GLUTEN,
     CRUSTACEOS,
     HUEVOS,
