@@ -9,7 +9,7 @@ public class Section {
 
     int id;
     String name, description;
-    List<Dish> dishes;
+    List<Dish> dishes = new ArrayList<>();
     static List<Section> sections;
 
 
@@ -18,6 +18,13 @@ public class Section {
         this.name = name;
         this.description = description;
         this.dishes = dishes;
+    }
+
+    public Section(int id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.dishes = new ArrayList<>();
     }
 
     public int getId() {
@@ -58,11 +65,6 @@ public class Section {
 
     @Override
     public String toString() {
-        return "Section{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", dishes=" + dishes.toString() +
-                '}';
+        return name;
     }
 }

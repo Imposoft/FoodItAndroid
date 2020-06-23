@@ -1,11 +1,11 @@
 package es.imposoft.foodit.view.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class SectionCreationActivity extends AppCompatActivity {
     }
 
     public void saveSection(View view) {
-        Section section = new Section(id, name.getText().toString(), description.getText().toString(), null);
+        Section section = new Section(id, name.getText().toString(), description.getText().toString());
         savedMenus.get(0).addSectionToMenu(section);
         System.out.println(section.getName());
         startActivity(new Intent(this, SelectionActivity.class));

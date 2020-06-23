@@ -1,7 +1,5 @@
 package es.imposoft.foodit.view.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,8 @@ public class DishesCreationActivity extends AppCompatActivity {
     static List<Allergen> allergenList;
     Section sectionSelected;
     List<Menu> savedMenus;
+    List<Section> allSections;
+
     int id = 0;
 
     @Override
@@ -37,6 +39,7 @@ public class DishesCreationActivity extends AppCompatActivity {
 
         allergenList = new ArrayList<>();
         savedMenus = MenuEditor.getInstance().getSavedMenus();
+        allSections = savedMenus.get(0).getSections();
 
         spinnerSections = findViewById(R.id.spinner_sections);
         createSpinners();
@@ -48,8 +51,8 @@ public class DishesCreationActivity extends AppCompatActivity {
         spinnerSections.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sectionSelected = savedMenus.get(0).getSections().get(savedMenus.get(0).getSections().indexOf(parent.getItemAtPosition(position).toString()));
-                Toast.makeText(parent.getContext(),"Seleccionado: " + sectionSelected.toString(), Toast.LENGTH_SHORT).show();
+                sectionSelected = allSections.get(position);
+                Toast.makeText(parent.getContext(), "Seleccionado: " + sectionSelected.toString(), Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView <?> parent) {
@@ -63,10 +66,9 @@ public class DishesCreationActivity extends AppCompatActivity {
         List<String> arrayList = new ArrayList<>();
         for(Section section : availableSections) arrayList.add(section.getName());
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
+        ArrayAdapter<Section> arrayAdapter = new ArrayAdapter<Section>(this, android.R.layout.simple_spinner_item, availableSections);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSections.setAdapter(arrayAdapter);
-
     }
 
     public void openAllergensPopup(View view) {
