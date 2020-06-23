@@ -26,4 +26,5 @@
     <string name="menu_">Menú: </string>
     <string name="category">Categoría: </string>
     <string name="add_allergens">Añadir alérgenos</string>
+    <string name="select_menus">Elegir menu/s</string>
 </resources>

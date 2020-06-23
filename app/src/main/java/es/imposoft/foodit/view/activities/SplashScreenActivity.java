@@ -10,7 +10,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(this, DishesCreationActivity.class));
+        startActivity(new Intent(this, SelectionActivity.class));
         this.finishAfterTransition();
     }
 }

@@ -1,16 +1,13 @@
 package es.imposoft.foodit.view.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -91,8 +88,8 @@ public class DishesCreationActivity extends AppCompatActivity {
         Dish dish = new Dish(id, name.getText().toString(), description.getText().toString(), allergenList, Double.parseDouble(String.valueOf(price.getText())));
         List<Section> sectionsAvailable = savedMenus.get(0).getSections();
         sectionsAvailable.get(sectionsAvailable.indexOf(sectionSelected)).addDishToSection(dish);
+        System.out.println(dish.getName());
+        startActivity(new Intent(this, SelectionActivity.class));
+        this.finish();
     }
-
-
-
 }

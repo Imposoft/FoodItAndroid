@@ -6,9 +6,10 @@ import java.util.List;
 public class MenuEditor {
 
     private static MenuEditor instance;
-    List<Menu> savedMenus = new ArrayList<>();
+    List<Menu> savedMenus;
 
     private MenuEditor() {
+        savedMenus = new ArrayList<>();
     }
 
     public static MenuEditor getInstance() {

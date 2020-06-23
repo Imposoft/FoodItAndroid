@@ -26,7 +26,7 @@ public class Menu {
         this.sections = sections;
     }
 
-    public void addSectionToMenu(Section section) { this.sections.add(section); }
+    public void addSectionToMenu(Section section) { sections.add(section); }
 
     public String getName() {
         return name;

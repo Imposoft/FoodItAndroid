@@ -2,6 +2,7 @@ package es.imposoft.foodit.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -30,5 +31,8 @@ public class MenuCreationActivity extends AppCompatActivity {
     public void saveMenu(View view) {
         menu = new Menu(null, id, name.getText().toString(), description.getText().toString());
         MenuEditor.getInstance().saveMenu(menu);
+        System.out.println(menu.getName());
+        startActivity(new Intent(this, SelectionActivity.class));
+        this.finish();
     }
 }
