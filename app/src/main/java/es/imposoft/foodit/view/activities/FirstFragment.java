@@ -1,6 +1,8 @@
 package es.imposoft.foodit.view.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +58,8 @@ public class FirstFragment extends Fragment {
                 for (Menu menu : savedMenus) {
                     postTestMenu(menu);
                 }
+                startActivity(new Intent(getContext(), SelectionActivity.class));
+                getActivity().finish();
                 //NavHostFragment.findNavController(FirstFragment.this)
                 //.navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
@@ -67,6 +71,8 @@ public class FirstFragment extends Fragment {
                         .setAction("Action", null).show();
 
                 loadMenu();
+                startActivity(new Intent(getContext(), SelectionActivity.class));
+                getActivity().finish();
                 //NavHostFragment.findNavController(FirstFragment.this)
                 //.navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
