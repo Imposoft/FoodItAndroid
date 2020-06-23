@@ -20,17 +20,6 @@ public class Section {
         this.dishes = dishes;
     }
 
-    public static Section getSectionFromName(String name) {
-        for(Section section : sections) {
-            if (section.getName().equals(name)) return section;
-        }
-        return null;
-    }
-
-    public static ArrayList<Section> getAvailableSections() {
-        return null;
-    }
-
     public int getId() {
         return id;
     }

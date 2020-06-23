@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 import es.imposoft.foodit.R;
 import es.imposoft.foodit.model.Menu;
 import es.imposoft.foodit.model.MenuEditor;
+import es.imposoft.foodit.model.Section;
 
 public class MenuCreationActivity extends AppCompatActivity {
 
@@ -29,7 +32,7 @@ public class MenuCreationActivity extends AppCompatActivity {
     }
 
     public void saveMenu(View view) {
-        menu = new Menu(null, id, name.getText().toString(), description.getText().toString());
+        menu = new Menu(id, name.getText().toString(), description.getText().toString());
         MenuEditor.getInstance().saveMenu(menu);
         System.out.println(menu.getName());
         startActivity(new Intent(this, SelectionActivity.class));

@@ -48,7 +48,7 @@ public class DishesCreationActivity extends AppCompatActivity {
         spinnerSections.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sectionSelected = Section.getSectionFromName(parent.getItemAtPosition(position).toString());
+                sectionSelected = savedMenus.get(0).getSections().get(savedMenus.get(0).getSections().indexOf(parent.getItemAtPosition(position).toString()));
                 Toast.makeText(parent.getContext(),"Seleccionado: " + sectionSelected.toString(), Toast.LENGTH_SHORT).show();
             }
             @Override
@@ -59,8 +59,8 @@ public class DishesCreationActivity extends AppCompatActivity {
     }
 
     private void createSpinners() {
-        ArrayList<Section> availableSections = Section.getAvailableSections();
-        ArrayList<String> arrayList = new ArrayList<>();
+        List<Section> availableSections = savedMenus.get(0).getSections();
+        List<String> arrayList = new ArrayList<>();
         for(Section section : availableSections) arrayList.add(section.getName());
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);

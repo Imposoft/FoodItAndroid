@@ -1,7 +1,6 @@
 package es.imposoft.foodit.model;
 
-import androidx.annotation.Nullable;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
@@ -11,7 +10,8 @@ public class Menu {
     String name, description;
     int id;
 
-    public Menu(List<Section> sections, int id, String name, String description) {
+    public Menu(int id, String name, String description) {
+        sections = new ArrayList<>();
         this.sections = sections;
         this.name = name;
         this.description = description;
