@@ -20,6 +20,8 @@ import java.util.List;
 import es.imposoft.foodit.R;
 import es.imposoft.foodit.model.Allergen;
 import es.imposoft.foodit.model.Dish;
+import es.imposoft.foodit.model.Menu;
+import es.imposoft.foodit.model.MenuEditor;
 import es.imposoft.foodit.model.Section;
 
 public class DishesCreationActivity extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class DishesCreationActivity extends AppCompatActivity {
     EditText name, description, price;
     static List<Allergen> allergenList;
     Section sectionSelected;
+    List<Menu> savedMenus;
     int id = 0;
 
     @Override
@@ -36,6 +39,7 @@ public class DishesCreationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dishes_creation);
 
         allergenList = new ArrayList<>();
+        savedMenus = MenuEditor.getInstance().getSavedMenus();
 
         spinnerSections = findViewById(R.id.spinner_sections);
         createSpinners();
@@ -85,12 +89,10 @@ public class DishesCreationActivity extends AppCompatActivity {
     public void saveDish(View view) {
         System.out.println(allergenList.toString());
         Dish dish = new Dish(id, name.getText().toString(), description.getText().toString(), allergenList, Double.parseDouble(String.valueOf(price.getText())));
-        addDishToSection(dish);
-        System.out.println(dish.toString());
+        List<Section> sectionsAvailable = savedMenus.get(0).getSections();
+        sectionsAvailable.get(sectionsAvailable.indexOf(sectionSelected)).addDishToSection(dish);
     }
 
-    public void addDishToSection(Dish dish) {
-        sectionSelected.getDishes().add(dish);
-    }
+
 
 }

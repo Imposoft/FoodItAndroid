@@ -12,9 +12,12 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
+
 import es.imposoft.foodit.R;
 import es.imposoft.foodit.interfaces.FoodItAPI;
 import es.imposoft.foodit.model.Menu;
+import es.imposoft.foodit.model.MenuEditor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,11 +49,13 @@ public class FirstFragment extends Fragment {
             public void onClick(View view) {
                 Snackbar.make(view, "You uploaded the menu", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                String textMenu = textBox.getText().toString();
+
 
                 //getTestMenu();
-                Menu menu = new Menu(textMenu);
-                postTestMenu(menu);
+                List<Menu> savedMenus = MenuEditor.getInstance().getSavedMenus();
+                for (Menu menu : savedMenus) {
+                    postTestMenu(menu);
+                }
                 //NavHostFragment.findNavController(FirstFragment.this)
                 //.navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
@@ -87,7 +92,7 @@ public class FirstFragment extends Fragment {
                 Menu menu = response.body();
                 console.setText("Éxito: " + response.code());
                 //String textMenu = menu.getMenuText();
-                textBox.setText(menu.getMenuText());
+                textBox.setText(menu.toString());
             }
 
             @Override

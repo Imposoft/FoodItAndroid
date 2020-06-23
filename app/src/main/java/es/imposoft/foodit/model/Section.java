@@ -63,7 +63,9 @@ public class Section {
         this.dishes = dishes;
     }
 
-    public List<Section> getSectionsFromMenu() { return sections; }
+    public void addDishToSection(Dish dish) { this.dishes.add(dish); }
+
+    public List<Section> getSectionsFromMenu() { return null; }
 
     @Override
     public String toString() {
@@ -71,7 +73,7 @@ public class Section {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", dishes=" + dishes +
+                ", dishes=" + dishes.toString() +
                 '}';
     }
 }

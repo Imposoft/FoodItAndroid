@@ -8,10 +8,12 @@ import android.widget.EditText;
 
 import es.imposoft.foodit.R;
 import es.imposoft.foodit.model.Menu;
+import es.imposoft.foodit.model.MenuEditor;
 
 public class MenuCreationActivity extends AppCompatActivity {
 
     Menu menu;
+    MenuEditor menuEditor;
     EditText name, description;
     int id = 0;
 
@@ -27,5 +29,6 @@ public class MenuCreationActivity extends AppCompatActivity {
 
     public void saveMenu(View view) {
         menu = new Menu(null, id, name.getText().toString(), description.getText().toString());
+        MenuEditor.getInstance().saveMenu(menu);
     }
 }
