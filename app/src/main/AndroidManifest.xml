@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activities.SelectionActivity"></activity>
-        <activity android:name=".view.activities.PopupActivity" />
+        <activity android:name=".view.activities.SelectionActivity" />
+        <activity android:name=".view.activities.AllergenPopupActivity" />
         <activity android:name=".view.activities.DishesCreationActivity" />
         <activity android:name=".view.activities.SectionCreationActivity" />
         <activity android:name=".view.activities.MenuCreationActivity" />
