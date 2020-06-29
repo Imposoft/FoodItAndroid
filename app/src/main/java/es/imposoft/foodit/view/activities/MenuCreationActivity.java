@@ -19,7 +19,7 @@ public class MenuCreationActivity extends AppCompatActivity {
     Menu menu;
     MenuEditor menuEditor;
     EditText name, description;
-    int id = 0;
+    int id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

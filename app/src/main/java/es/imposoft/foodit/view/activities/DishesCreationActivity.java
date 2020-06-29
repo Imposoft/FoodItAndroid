@@ -30,7 +30,7 @@ public class DishesCreationActivity extends AppCompatActivity {
     List<Menu> savedMenus;
     List<Section> allSections;
 
-    int id = 0;
+    int id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

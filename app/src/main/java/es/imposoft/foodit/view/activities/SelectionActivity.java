@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import es.imposoft.foodit.R;
-import es.imposoft.foodit.view.activities.*;
 
 public class SelectionActivity extends AppCompatActivity {
 

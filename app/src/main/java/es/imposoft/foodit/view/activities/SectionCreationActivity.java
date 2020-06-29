@@ -18,7 +18,7 @@ public class SectionCreationActivity extends AppCompatActivity {
 
     List<Menu> savedMenus;
     EditText name, description;
-    int id = 0;
+    int id = -1;
 
 
     @Override
