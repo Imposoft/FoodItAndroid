@@ -93,4 +93,11 @@ public class DishActivity extends AppCompatActivity {
             if(section.getId() == id) return section;
         return null;
     }
+
+    public void goBack(View view) {
+        Intent intent = new Intent(this, SectionActivity.class);
+        intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
+        startActivity(intent);
+        this.finish();
+    }
 }

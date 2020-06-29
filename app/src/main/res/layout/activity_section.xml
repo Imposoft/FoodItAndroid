@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".view.activities.SectionActivity">
 
+    <ImageButton
+        android:id="@+id/button_goBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/white"
+        android:onClick="goBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_createSection"
         android:layout_width="wrap_content"
@@ -56,6 +68,6 @@
         app:layout_constraintBottom_toTopOf="@+id/button_createSection"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

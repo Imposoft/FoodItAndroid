@@ -85,4 +85,10 @@ public class SectionActivity extends AppCompatActivity {
             if(menu.getId() == id) return menu;
         return null;
     }
+
+    public void goBack(View view) {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
 }
