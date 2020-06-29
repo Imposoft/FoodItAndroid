@@ -1,15 +1,14 @@
 package es.imposoft.foodit.view.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +43,8 @@ public class MenuActivity extends AppCompatActivity {
         //here u can use clickListener
         menuList.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(getApplicationContext(), SectionActivity.class);
-            intent.putExtra("MenuID", availableMenus.get(position).getId());
+            intent.putExtra("MenuID", position);
+            System.out.println(availableMenus.get(position).getSections().get(0).toString());
             startActivity(intent);
             finish();
         });
@@ -125,9 +125,9 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void fillMenuListView() {
-        List<String> arrayList = new ArrayList<>();
-        for(Menu menu : availableMenus) arrayList.add(menu.getName());
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, arrayList);
+        List<Menu> arrayList = new ArrayList<>();
+        for(Menu menu : availableMenus) arrayList.add(menu);
+        ArrayAdapter<Menu> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, arrayList);
         menuList.setAdapter(arrayAdapter);
     }
 

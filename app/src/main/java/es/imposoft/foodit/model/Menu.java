@@ -65,11 +65,6 @@ public class Menu {
 
     @Override
     public String toString() {
-        return "Menu{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", description='" + description + '\'' +
-                ", sections=" + sections.toString() +
-                '}';
+        return name;
     }
 }
