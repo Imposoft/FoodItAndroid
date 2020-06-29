@@ -1,14 +1,13 @@
 package es.imposoft.foodit.view.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +22,7 @@ public class SectionActivity extends AppCompatActivity {
     List<Menu> availableMenus = new ArrayList<>();
     List<Section>availableSections = new ArrayList<>();
     ListView sectionList;
+    Menu selectedMenu;
     private Bundle windowInfo;
 
     @Override
@@ -34,12 +34,13 @@ public class SectionActivity extends AppCompatActivity {
 
         windowInfo = getIntent().getExtras();
 
-        sectionList = findViewById(R.id.listView_availableMenus);
+        sectionList = findViewById(R.id.listView_availableSections);
         availableMenus = MenuEditor.getInstance().getSavedMenus();
 
         for (Menu menu : availableMenus) {
             availableSections.addAll(menu.getSections());
         }
+        selectedMenu = availableMenus.get((int) getIntent().getExtras().get("MenuID"));
 
         fillSectionListView();
 
@@ -69,9 +70,9 @@ public class SectionActivity extends AppCompatActivity {
     }
 
     private void fillSectionListView() {
-        List<String> arrayList = new ArrayList<>();
-        for(Section section : availableSections) arrayList.add(section.getName());
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, arrayList);
+        List<Section> arrayList = new ArrayList<>();
+        for(Section section : selectedMenu.getSections()) arrayList.add(section);
+        ArrayAdapter<Section> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, arrayList);
         sectionList.setAdapter(arrayAdapter);
     }
 }
