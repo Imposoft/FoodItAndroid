@@ -27,7 +27,7 @@ public class SelectionActivity extends AppCompatActivity {
     }
 
     public void openCreateDish(View view) {
-        startActivity(new Intent(this, DishesCreationActivity.class));
+        startActivity(new Intent(this, DishCreationActivity.class));
         this.finish();
     }
 

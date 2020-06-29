@@ -11,15 +11,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 import es.imposoft.foodit.R;
+import es.imposoft.foodit.model.IDSingleton;
 import es.imposoft.foodit.model.Menu;
 import es.imposoft.foodit.model.MenuEditor;
 import es.imposoft.foodit.model.Section;
 
 public class SectionCreationActivity extends AppCompatActivity {
 
-    List<Menu> savedMenus;
+    List<Menu> availableMenus;
     EditText name, description;
-    int id = -1;
+    int id;
+    Section desiredSection;
+    Menu desiredMenu;
+    private Bundle windowInfo;
 
 
     @Override
@@ -27,23 +31,49 @@ public class SectionCreationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section_creation);
 
-        savedMenus = MenuEditor.getInstance().getSavedMenus();
+        availableMenus = MenuEditor.getInstance().getSavedMenus();
+
+        windowInfo = getIntent().getExtras();
+
+        if (windowInfo != null) {
+            List<Menu> menus = MenuEditor.getInstance().getSavedMenus();
+            for (Menu menu : menus) {
+                if (menu.getId() == (int) windowInfo.get("MenuID")) desiredMenu = menu;
+            }
+            if(windowInfo.get("SectionID") != null)
+                for (Section section : desiredMenu.getSections()) {
+                    if (section.getId() == (int) windowInfo.get("SectionID")) desiredSection = section;
+            }
+        }
 
         name = findViewById(R.id.editText_name);
         description = findViewById(R.id.editText_description);
+
+        if (desiredSection != null) {
+            name.setText(desiredSection.getName());
+            description.setText(desiredSection.getDescription());
+        }
     }
 
     public void saveSection(View view) {
         String strName = name.getText().toString();
-        if(!TextUtils.isEmpty(strName)) {
-        Section section = new Section(id, name.getText().toString(), description.getText().toString());
-        savedMenus.get(0).addSectionToMenu(section);
-        System.out.println(section.getName());
-        startActivity(new Intent(this, SelectionActivity.class));
-        this.finish();
+        if (!TextUtils.isEmpty(strName) && desiredSection == null) {
+            id = IDSingleton.getInstance().getIDSection();
+            Section section = new Section(id, name.getText().toString(), description.getText().toString());
+            desiredMenu.addSectionToMenu(section);
+            Intent intent = new Intent(this, SectionActivity.class);
+            intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
+            startActivity(intent);
+            this.finish();
+        } else if (!TextUtils.isEmpty(strName) && desiredSection != null) {
+            desiredSection.setDescription(description.getText().toString());
+            desiredSection.setName(name.getText().toString());
+            Intent intent = new Intent(this, SectionActivity.class);
+            intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
+            startActivity(intent);
+            this.finish();
         } else {
             name.setError("You must enter the name");
-            return;
         }
 
     }

@@ -31,4 +31,5 @@
     <string name="save">Guardar</string>
     <string name="addActual">Anyadir existente</string>
     <string name="editMenu">Editar menu</string>
+    <string name="edit_section">Editar seccion</string>
 </resources>

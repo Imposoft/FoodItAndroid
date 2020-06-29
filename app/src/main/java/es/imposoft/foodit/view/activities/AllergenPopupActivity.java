@@ -53,21 +53,21 @@ public class AllergenPopupActivity extends AppCompatActivity {
 
 
     public void createPreferenceList(View view) {
-        List<Allergen> allergens = DishesCreationActivity.getAllergenList();
+        List<Allergen> allergens = DishCreationActivity.getAllergenList();
         allergens.clear();
         int i = 0;
         for(CheckBox c : checkboxes) {
             if (c.isChecked()) allergens.add(Allergen.values()[i]);
             i++;
         }
-        DishesCreationActivity.setAllergens(allergens);
+        DishCreationActivity.setAllergens(allergens);
         System.out.println(allergens.toString());
         finish();
     }
 
     private void isSelectedPreviously() {
         List<Allergen> allergens;
-        allergens = DishesCreationActivity.getAllergenList();
+        allergens = DishCreationActivity.getAllergenList();
         for (Allergen a : allergens) {
             switch (a) {
                 case GLUTEN:

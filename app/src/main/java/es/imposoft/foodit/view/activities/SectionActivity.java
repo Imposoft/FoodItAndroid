@@ -20,7 +20,7 @@ import es.imposoft.foodit.model.Section;
 public class SectionActivity extends AppCompatActivity {
 
     List<Menu> availableMenus = new ArrayList<>();
-    List<Section>availableSections = new ArrayList<>();
+    List<Section> availableSections = new ArrayList<>();
     ListView sectionList;
     Menu selectedMenu;
     private Bundle windowInfo;
@@ -35,18 +35,21 @@ public class SectionActivity extends AppCompatActivity {
         windowInfo = getIntent().getExtras();
 
         sectionList = findViewById(R.id.listView_availableSections);
-        availableMenus = MenuEditor.getInstance().getSavedMenus();
 
-        for (Menu menu : availableMenus) {
-            availableSections.addAll(menu.getSections());
-        }
-        selectedMenu = availableMenus.get((int) getIntent().getExtras().get("MenuID"));
+        //Obtener todas las secciones de todos los menus en una misma lista
+        /*for (Menu menu : availableMenus)
+            availableSections.addAll(menu.getSections());*/
+
+        int menuID = (int) windowInfo.get("MenuID");
+        selectedMenu = getSelectedMenu(menuID);
+        availableSections = selectedMenu.getSections();
 
         fillSectionListView();
 
         //here u can use clickListener
         sectionList.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(getApplicationContext(), SectionActivity.class);
+            Intent intent = new Intent(getApplicationContext(), DishActivity.class);
+            intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
             intent.putExtra("SectionID", availableSections.get(position).getId());
             startActivity(intent);
             finish();
@@ -54,12 +57,14 @@ public class SectionActivity extends AppCompatActivity {
     }
 
     public void createSection(View view) {
-        startActivity(new Intent(this, SectionCreationActivity.class));
-        this.finish();
+        Intent intent = new Intent(getApplicationContext(), SectionCreationActivity.class);
+        intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
+        startActivity(intent);
+        finish();
     }
 
     public void editMenu(View view) {
-        Intent intent = new Intent(this, SectionCreationActivity.class);
+        Intent intent = new Intent(this, MenuCreationActivity.class);
         intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
         startActivity(intent);
         this.finish();
@@ -70,9 +75,14 @@ public class SectionActivity extends AppCompatActivity {
     }
 
     private void fillSectionListView() {
-        List<Section> arrayList = new ArrayList<>();
-        for(Section section : selectedMenu.getSections()) arrayList.add(section);
-        ArrayAdapter<Section> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, arrayList);
+        ArrayAdapter<Section> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, availableSections);
         sectionList.setAdapter(arrayAdapter);
+    }
+
+    private Menu getSelectedMenu(int id){
+        availableMenus = MenuEditor.getInstance().getSavedMenus();
+        for (Menu menu : availableMenus)
+            if(menu.getId() == id) return menu;
+        return null;
     }
 }
