@@ -38,8 +38,7 @@ public class SectionActivity extends AppCompatActivity {
         availableMenus = MenuEditor.getInstance().getSavedMenus();
 
         for (Menu menu : availableMenus) {
-            for (Section section : menu.getSections())
-                    availableSections.add(section);
+            availableSections.addAll(menu.getSections());
         }
 
         fillSectionListView();
