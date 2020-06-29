@@ -27,4 +27,6 @@
     <string name="category">Categoría: </string>
     <string name="add_allergens">Añadir alérgenos</string>
     <string name="select_menus">Elegir menu/s</string>
+    <string name="load">Cargar</string>
+    <string name="save">Guardar</string>
 </resources>
