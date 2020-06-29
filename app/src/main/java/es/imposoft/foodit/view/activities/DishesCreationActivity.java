@@ -2,6 +2,7 @@ package es.imposoft.foodit.view.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -86,6 +87,10 @@ public class DishesCreationActivity extends AppCompatActivity {
     }
 
     public void saveDish(View view) {
+        String strName = name.getText().toString();
+        String strDescription = description.getText().toString();
+        String strPrice = price.getText().toString();
+        if(!TextUtils.isEmpty(strName) && !TextUtils.isEmpty(strDescription) && !TextUtils.isEmpty(strPrice)) {
         System.out.println(allergenList.toString());
         Dish dish = new Dish(id, name.getText().toString(), description.getText().toString(), allergenList, Double.parseDouble(String.valueOf(price.getText())));
         List<Section> sectionsAvailable = savedMenus.get(0).getSections();
@@ -93,5 +98,12 @@ public class DishesCreationActivity extends AppCompatActivity {
         System.out.println(dish.getName());
         startActivity(new Intent(this, SelectionActivity.class));
         this.finish();
+        } else {
+            if(TextUtils.isEmpty(strName)) name.setError("You must enter the name");
+            if(TextUtils.isEmpty(strDescription)) description.setError("You must enter the ingredients");
+            if(TextUtils.isEmpty(strPrice)) price.setError("You must enter the price");
+            return;
+        }
+
     }
 }

@@ -29,4 +29,6 @@
     <string name="select_menus">Elegir menu/s</string>
     <string name="load">Cargar</string>
     <string name="save">Guardar</string>
+    <string name="addActual">Anyadir existente</string>
+    <string name="editMenu">Editar menu</string>
 </resources>

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -30,12 +32,22 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_menu);
 
         menuList = findViewById(R.id.listView_availableMenus);
         availableMenus = MenuEditor.getInstance().getSavedMenus();
 
         fillMenuListView();
+
+        //here u can use clickListener
+        menuList.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intent = new Intent(getApplicationContext(), SectionActivity.class);
+            intent.putExtra("MenuID", availableMenus.get(position).getId());
+            startActivity(intent);
+            finish();
+        });
 
     }
 
@@ -46,7 +58,6 @@ public class MenuActivity extends AppCompatActivity {
 
     public void loadMenus(View view) {
         loadMenu();
-        refresh();
     }
 
     public void saveMenus(View view) {
@@ -62,20 +73,26 @@ public class MenuActivity extends AppCompatActivity {
 
         FoodItAPI foodItAPI = retrofit.create(FoodItAPI.class);
 
-        Call<Menu> menuCall = foodItAPI.loadMenu();
-        menuCall.enqueue(new Callback<Menu>() {
+        //Call<Menu> menuCall = foodItAPI.loadMenu(1);
+        Call<List<Menu>> menuCall = foodItAPI.loadMenus();
+        menuCall.enqueue(new Callback<List<Menu>>() {
             @Override
-            public void onResponse(Call<Menu> call, Response<Menu> response) {
+            public void onResponse(Call<List<Menu>> call, Response<List<Menu>> response) {
                 if(!response.isSuccessful()) {
                     Toast.makeText(MenuActivity.this, "Error: " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Menu menu = response.body();
+                List<Menu> menus = response.body();
+                for (Menu menu : menus) {
+                    availableMenus.add(menu);
+                    MenuEditor.getInstance().saveMenu(menu);
+                }
                 Toast.makeText(MenuActivity.this, "Éxito: " + response.code(), Toast.LENGTH_SHORT).show();
+                refresh();
             }
 
             @Override
-            public void onFailure(Call<Menu> call, Throwable t) {
+            public void onFailure(Call<List<Menu>> call, Throwable t) {
                 Toast.makeText(MenuActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -111,7 +128,6 @@ public class MenuActivity extends AppCompatActivity {
         List<String> arrayList = new ArrayList<>();
         for(Menu menu : availableMenus) arrayList.add(menu.getName());
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, arrayList);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         menuList.setAdapter(arrayAdapter);
     }
 

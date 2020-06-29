@@ -86,7 +86,7 @@ public class FirstFragment extends Fragment {
 
         FoodItAPI foodItAPI = retrofit.create(FoodItAPI.class);
 
-        Call<Menu> menuCall = foodItAPI.loadMenu();
+        Call<Menu> menuCall = foodItAPI.loadMenu(1);
         menuCall.enqueue(new Callback<Menu>() {
             @Override
             public void onResponse(Call<Menu> call, Response<Menu> response) {

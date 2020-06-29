@@ -12,7 +12,6 @@ public class Menu {
 
     public Menu(int id, String name, String description) {
         sections = new ArrayList<>();
-        this.sections = sections;
         this.name = name;
         this.description = description;
         this.id = id;
