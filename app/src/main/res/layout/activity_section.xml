@@ -68,6 +68,6 @@
         app:layout_constraintBottom_toTopOf="@+id/button_createSection"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        app:layout_constraintTop_toBottomOf="@+id/button_goBack" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

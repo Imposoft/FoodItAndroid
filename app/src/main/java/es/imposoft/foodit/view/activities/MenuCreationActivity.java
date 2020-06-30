@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.List;
@@ -39,8 +40,14 @@ public class MenuCreationActivity extends AppCompatActivity {
 
         name = findViewById(R.id.editText_name);
         description = findViewById(R.id.editText_description);
+        Button delete = findViewById(R.id.button_delete);
+        Button create = findViewById(R.id.button_create);
+        delete.setVisibility(View.GONE);
+        create.setText("Crear");
 
         if(desiredMenu != null) {
+            delete.setVisibility(View.VISIBLE);
+            create.setText("Actualizar");
             name.setText(desiredMenu.getName());
             description.setText(desiredMenu.getDescription());
         }
@@ -63,5 +70,17 @@ public class MenuCreationActivity extends AppCompatActivity {
         } else {
             name.setError("You must enter the name");
         }
+    }
+
+    public void deleteMenu(View view) {
+        List<Menu> availableMenus = MenuEditor.getInstance().getSavedMenus();
+        availableMenus.remove(desiredMenu);
+        goBack(view);
+    }
+
+    public void goBack(View view) {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 }

@@ -32,4 +32,6 @@
     <string name="addActual">Anyadir existente</string>
     <string name="editMenu">Editar menu</string>
     <string name="edit_section">Editar seccion</string>
+    <string name="delete">Borrar</string>
+    <string name="cancel">Cancelar</string>
 </resources>

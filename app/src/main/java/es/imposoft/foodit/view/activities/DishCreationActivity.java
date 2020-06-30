@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -24,18 +25,16 @@ import es.imposoft.foodit.model.Section;
 
 public class DishCreationActivity extends AppCompatActivity {
 
-    Spinner spinnerSections;
     EditText name, description, price;
     static List<Allergen> allergenList;
-    Section sectionSelected;
     List<Menu> availableMenus = new ArrayList<>();
-    List<Section> availableSections = new ArrayList<>();
+    Menu desiredMenu;
+    Section desiredSection;
     Dish desiredDish;
 
     int id;
     private Bundle windowInfo;
-    private Menu desiredMenu;
-    private Section desiredSection;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +63,14 @@ public class DishCreationActivity extends AppCompatActivity {
         name = findViewById(R.id.editText_name);
         description = findViewById(R.id.editText_description);
         price = findViewById(R.id.editText_price);
+        Button delete = findViewById(R.id.button_delete);
+        Button create = findViewById(R.id.button_create);
+        delete.setVisibility(View.GONE);
+        create.setText("Crear");
 
         if (desiredDish != null) {
+            delete.setVisibility(View.VISIBLE);
+            create.setText("Actualizar");
             name.setText(desiredDish.getName());
             description.setText(desiredDish.getDescription());
             price.setText(String.valueOf(desiredDish.getPrice()));
@@ -115,5 +120,17 @@ public class DishCreationActivity extends AppCompatActivity {
             if(TextUtils.isEmpty(strPrice)) price.setError("You must enter the price");
         }
 
+    }
+
+    public void deleteMenu(View view) {
+        List<Dish> availableDishes = desiredSection.getDishes();
+        availableDishes.remove(desiredDish);
+        goBack(view);
+    }
+
+    public void goBack(View view) {
+        Intent intent = new Intent(this, DishActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 }

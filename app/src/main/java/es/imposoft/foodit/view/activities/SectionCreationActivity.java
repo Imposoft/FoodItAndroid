@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,10 +22,10 @@ public class SectionCreationActivity extends AppCompatActivity {
     List<Menu> availableMenus;
     EditText name, description;
     int id;
-    Section desiredSection;
     Menu desiredMenu;
-    private Bundle windowInfo;
+    Section desiredSection;
 
+    private Bundle windowInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,14 @@ public class SectionCreationActivity extends AppCompatActivity {
 
         name = findViewById(R.id.editText_name);
         description = findViewById(R.id.editText_description);
+        Button delete = findViewById(R.id.button_delete);
+        Button create = findViewById(R.id.button_create);
+        delete.setVisibility(View.GONE);
+        create.setText("Crear");
 
         if (desiredSection != null) {
+            delete.setVisibility(View.VISIBLE);
+            create.setText("Actualizar");
             name.setText(desiredSection.getName());
             description.setText(desiredSection.getDescription());
         }
@@ -77,4 +84,17 @@ public class SectionCreationActivity extends AppCompatActivity {
         }
 
     }
+
+    public void deleteMenu(View view) {
+        List<Section> availableSections = desiredMenu.getSections();
+        availableSections.remove(desiredSection);
+        goBack(view);
+    }
+
+    public void goBack(View view) {
+        Intent intent = new Intent(this, SectionActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
+
 }
