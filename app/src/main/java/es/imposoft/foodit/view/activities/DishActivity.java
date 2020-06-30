@@ -3,8 +3,10 @@ package es.imposoft.foodit.view.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -76,7 +78,14 @@ public class DishActivity extends AppCompatActivity {
     }
 
     private void fillSectionListView() {
-        ArrayAdapter<Dish> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, selectedSection.getDishes());
+        ArrayAdapter<Dish> arrayAdapter = new ArrayAdapter<Dish>(this, android.R.layout.simple_selectable_list_item, availableDishes){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent){
+                View view = super.getView(position, convertView, parent);
+                if(availableDishes.get(position).getId() < 0) { view.setBackgroundColor(Color.YELLOW); }
+                return view;
+            }
+        };
         dishList.setAdapter(arrayAdapter);
     }
 

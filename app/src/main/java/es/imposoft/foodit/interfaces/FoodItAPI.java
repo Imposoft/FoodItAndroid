@@ -21,6 +21,4 @@ public interface FoodItAPI {
     @GET("loadMenus")
     Call<List<Menu>> loadMenus();
 
-    @GET("updateMenu")
-    Call<Menu> updateMenu(@Query("id") int id, @Body Menu menu);
 }

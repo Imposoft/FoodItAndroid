@@ -13,10 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activities.DishActivity"></activity>
+        <activity android:name=".view.activities.DishActivity" />
         <activity android:name=".view.activities.SectionActivity" />
         <activity android:name=".view.activities.MenuActivity" />
-        <activity android:name=".view.activities.SelectionActivity" />
         <activity android:name=".view.activities.AllergenPopupActivity" />
         <activity android:name=".view.activities.DishCreationActivity" />
         <activity android:name=".view.activities.SectionCreationActivity" />
@@ -33,10 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".view.activities.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

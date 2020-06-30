@@ -1,10 +1,12 @@
 package es.imposoft.foodit.view.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -29,7 +31,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MenuActivity extends AppCompatActivity {
 
     List<Menu> availableMenus = new ArrayList<>();
-    List<Menu> newMenus = new ArrayList<>();
     ListView menuList;
 
     @Override
@@ -106,11 +107,7 @@ public class MenuActivity extends AppCompatActivity {
                 .build();
 
         FoodItAPI foodItAPI = retrofit.create(FoodItAPI.class);
-        Call<Menu> menuCall;
-        if(menu.getId() < 0)
-             menuCall = foodItAPI.createNewMenu(menu);
-        else
-            menuCall = foodItAPI.updateMenu(menu.getId(), menu);
+        Call<Menu> menuCall = foodItAPI.createNewMenu(menu);
         menuCall.enqueue(new Callback<Menu>() {
             @Override
             public void onResponse(Call<Menu> call, Response<Menu> response) {
@@ -130,7 +127,14 @@ public class MenuActivity extends AppCompatActivity {
 
 
     private void fillMenuListView() {
-        ArrayAdapter<Menu> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, availableMenus);
+        ArrayAdapter<Menu> arrayAdapter = new ArrayAdapter<Menu>(this, android.R.layout.simple_selectable_list_item, availableMenus){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent){
+                View view = super.getView(position, convertView, parent);
+                if(availableMenus.get(position).getId() < 0) { view.setBackgroundColor(Color.YELLOW); }
+                return view;
+            }
+        };
         menuList.setAdapter(arrayAdapter);
     }
 

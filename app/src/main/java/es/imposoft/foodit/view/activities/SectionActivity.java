@@ -1,8 +1,10 @@
 package es.imposoft.foodit.view.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -75,7 +77,14 @@ public class SectionActivity extends AppCompatActivity {
     }
 
     private void fillSectionListView() {
-        ArrayAdapter<Section> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, availableSections);
+        ArrayAdapter<Section> arrayAdapter = new ArrayAdapter<Section>(this, android.R.layout.simple_selectable_list_item, availableSections){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent){
+                View view = super.getView(position, convertView, parent);
+                if(availableSections.get(position).getId() < 0) { view.setBackgroundColor(Color.YELLOW); }
+                return view;
+            }
+        };
         sectionList.setAdapter(arrayAdapter);
     }
 
