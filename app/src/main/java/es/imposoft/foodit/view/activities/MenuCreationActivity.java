@@ -78,7 +78,10 @@ public class MenuCreationActivity extends AppCompatActivity {
     public void deleteMenu(View view) {
         List<Menu> availableMenus = menuEditorInstance.getSavedMenus();
         availableMenus.remove(desiredMenu);
-        goBack(view);
+        Intent intent = new Intent(this, MenuActivity.class);
+        intent.putExtra("MenuIDtoDelete", (int) windowInfo.get("MenuIDtoDelete"));
+        startActivity(intent);
+        this.finish();
     }
 
     public void goBack(View view) {
