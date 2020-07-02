@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".view.activities.SectionActivity">
 
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/availableSections"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:textSize="24sp"
+        app:autoSizeMinTextSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/listView_availableSections"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/button_goBack"
         android:layout_width="wrap_content"
@@ -29,7 +43,7 @@
         android:onClick="createSection"
         app:layout_constraintBottom_toTopOf="@+id/button_saveMenu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_create_black_24dp" />
+        app:srcCompat="@drawable/add_plus" />
 
     <Button
         android:id="@+id/button_loadMenu"

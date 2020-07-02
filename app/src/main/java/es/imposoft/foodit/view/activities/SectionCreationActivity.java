@@ -26,19 +26,20 @@ public class SectionCreationActivity extends AppCompatActivity {
     Section desiredSection;
 
     private Bundle windowInfo;
+    MenuEditor menuEditorInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section_creation);
 
-        availableMenus = MenuEditor.getInstance().getSavedMenus();
+        menuEditorInstance = MenuEditor.getInstance();
+        availableMenus = menuEditorInstance.getSavedMenus();
 
         windowInfo = getIntent().getExtras();
 
         if (windowInfo != null) {
-            List<Menu> menus = MenuEditor.getInstance().getSavedMenus();
-            for (Menu menu : menus) {
+            for (Menu menu : availableMenus) {
                 if (menu.getId() == (int) windowInfo.get("MenuID")) desiredMenu = menu;
             }
             if(windowInfo.get("SectionID") != null)
@@ -93,6 +94,7 @@ public class SectionCreationActivity extends AppCompatActivity {
 
     public void goBack(View view) {
         Intent intent = new Intent(this, SectionActivity.class);
+        intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
         startActivity(intent);
         this.finish();
     }

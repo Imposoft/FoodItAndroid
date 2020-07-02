@@ -31,6 +31,7 @@ public class DishActivity extends AppCompatActivity {
     Menu selectedMenu;
     Section selectedSection;
     private Bundle windowInfo;
+    MenuEditor menuEditorInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class DishActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dish);
 
         windowInfo = getIntent().getExtras();
-
+        menuEditorInstance = MenuEditor.getInstance();
         dishList = findViewById(R.id.listView_availableDishes);
 
         int menuID = (int) windowInfo.get("MenuID");
@@ -90,7 +91,7 @@ public class DishActivity extends AppCompatActivity {
     }
 
     private Menu getSelectedMenu(int id){
-        availableMenus = MenuEditor.getInstance().getSavedMenus();
+        availableMenus = menuEditorInstance.getSavedMenus();
         for (Menu menu : availableMenus)
             if(menu.getId() == id) return menu;
         return null;

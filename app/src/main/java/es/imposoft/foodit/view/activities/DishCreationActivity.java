@@ -34,6 +34,7 @@ public class DishCreationActivity extends AppCompatActivity {
 
     int id;
     private Bundle windowInfo;
+    MenuEditor menuEditorInstance;
 
 
     @Override
@@ -41,14 +42,14 @@ public class DishCreationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dishes_creation);
 
+        menuEditorInstance = MenuEditor.getInstance();
         allergenList = new ArrayList<>();
-        availableMenus = MenuEditor.getInstance().getSavedMenus();
+        availableMenus = menuEditorInstance.getSavedMenus();
 
         windowInfo = getIntent().getExtras();
 
         if (windowInfo != null) {
-            List<Menu> menus = MenuEditor.getInstance().getSavedMenus();
-            for (Menu menu : menus) {
+            for (Menu menu : availableMenus) {
                 if (menu.getId() == (int) windowInfo.get("MenuID")) desiredMenu = menu;
             }
             for (Section section : desiredMenu.getSections()) {
@@ -130,6 +131,8 @@ public class DishCreationActivity extends AppCompatActivity {
 
     public void goBack(View view) {
         Intent intent = new Intent(this, DishActivity.class);
+        intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
+        intent.putExtra("SectionID", (int) windowInfo.get("SectionID"));
         startActivity(intent);
         this.finish();
     }

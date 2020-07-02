@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".view.activities.DishActivity">
 
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/availableDishes"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:textSize="24sp"
+        app:autoSizeMinTextSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/listView_availableDishes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/button_goBack"
         android:layout_width="wrap_content"
@@ -51,7 +66,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:text="Sin funcion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_editSection" />
@@ -66,5 +81,6 @@
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_create_black_24dp" />
+        app:srcCompat="@drawable/add_plus"
+        android:focusable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

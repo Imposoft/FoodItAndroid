@@ -34,4 +34,7 @@
     <string name="edit_section">Editar seccion</string>
     <string name="delete">Borrar</string>
     <string name="cancel">Cancelar</string>
+    <string name="availableMenus">Menus disponibles</string>
+    <string name="availableSections">Secciones disponibles</string>
+    <string name="availableDishes">Platos disponibles</string>
 </resources>

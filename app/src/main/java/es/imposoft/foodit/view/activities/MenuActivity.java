@@ -32,6 +32,7 @@ public class MenuActivity extends AppCompatActivity {
 
     List<Menu> availableMenus = new ArrayList<>();
     ListView menuList;
+    MenuEditor menuEditorInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +42,11 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         menuList = findViewById(R.id.listView_availableMenus);
-        availableMenus = MenuEditor.getInstance().getSavedMenus();
+        menuEditorInstance = MenuEditor.getInstance();
+        availableMenus = menuEditorInstance.getSavedMenus();
 
-        fillMenuListView();
+        //fillMenuListView();
+        initialLoadMenu();
 
         //here u can use clickListener
         menuList.setOnItemClickListener((parent, view, position, id) -> {
@@ -86,11 +89,61 @@ public class MenuActivity extends AppCompatActivity {
                     return;
                 }
                 List<Menu> menus = response.body();
-                availableMenus.addAll(menus);
-                MenuEditor.getInstance().getSavedMenus().clear();
-                MenuEditor.getInstance().getSavedMenus().addAll(menus);
+                List<Integer> idLoadedMenus = new ArrayList<>(), idAvailableMenus = new ArrayList<>();;
+                for (Menu menu : menus) idLoadedMenus.add(menu.getId());
+                for (Menu menu2 : availableMenus) idAvailableMenus.add(menu2.getId());
+
+                int posicion = 0;
+                for (Integer id : idLoadedMenus) {
+                    if(!idAvailableMenus.contains(id)) menuEditorInstance.saveMenu(menus.get(posicion));
+                    posicion++;
+                }
+
+                //availableMenus.clear();
+                availableMenus = menuEditorInstance.getSavedMenus();
                 Toast.makeText(MenuActivity.this, "Éxito: " + response.code(), Toast.LENGTH_SHORT).show();
+                fillMenuListView();
                 refresh();
+            }
+
+            @Override
+            public void onFailure(Call<List<Menu>> call, Throwable t) {
+                Toast.makeText(MenuActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void initialLoadMenu() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://imposoft.es:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        FoodItAPI foodItAPI = retrofit.create(FoodItAPI.class);
+
+        Call<List<Menu>> menuCall = foodItAPI.loadMenus();
+        menuCall.enqueue(new Callback<List<Menu>>() {
+            @Override
+            public void onResponse(Call<List<Menu>> call, Response<List<Menu>> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(MenuActivity.this, "Error: " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                List<Menu> menus = response.body();
+                List<Integer> idLoadedMenus = new ArrayList<>(), idAvailableMenus = new ArrayList<>();;
+                for (Menu menu : menus) idLoadedMenus.add(menu.getId());
+                for (Menu menu2 : availableMenus) idAvailableMenus.add(menu2.getId());
+
+                int posicion = 0;
+                for (Integer id : idLoadedMenus) {
+                    if(!idAvailableMenus.contains(id)) menuEditorInstance.saveMenu(menus.get(posicion));
+                    posicion++;
+                }
+
+                //availableMenus.clear();
+                availableMenus = menuEditorInstance.getSavedMenus();
+                Toast.makeText(MenuActivity.this, "Éxito: " + response.code(), Toast.LENGTH_SHORT).show();
+                fillMenuListView();
             }
 
             @Override
@@ -127,11 +180,13 @@ public class MenuActivity extends AppCompatActivity {
 
 
     private void fillMenuListView() {
-        ArrayAdapter<Menu> arrayAdapter = new ArrayAdapter<Menu>(this, android.R.layout.simple_selectable_list_item, availableMenus){
+        ArrayAdapter<Menu> arrayAdapter = new ArrayAdapter<Menu>(this, android.R.layout.simple_selectable_list_item, availableMenus) {
             @Override
-            public View getView(int position, View convertView, ViewGroup parent){
+            public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
-                if(availableMenus.get(position).getId() < 0) { view.setBackgroundColor(Color.YELLOW); }
+                if (availableMenus.get(position).getId() < 0) {
+                    view.setBackgroundColor(Color.YELLOW);
+                }
                 return view;
             }
         };

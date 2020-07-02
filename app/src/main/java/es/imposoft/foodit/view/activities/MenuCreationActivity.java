@@ -23,6 +23,7 @@ public class MenuCreationActivity extends AppCompatActivity {
     int id;
     private Bundle windowInfo;
     Menu desiredMenu;
+    MenuEditor menuEditorInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,10 @@ public class MenuCreationActivity extends AppCompatActivity {
 
         windowInfo = getIntent().getExtras();
 
+        menuEditorInstance = MenuEditor.getInstance();
+
         if(windowInfo != null) {
-            List<Menu> menus = MenuEditor.getInstance().getSavedMenus();
+            List<Menu> menus = menuEditorInstance.getSavedMenus();
             for (Menu menu : menus) {
                 if(menu.getId() == (int) windowInfo.get("MenuID")) desiredMenu = menu;
             }
@@ -59,7 +62,7 @@ public class MenuCreationActivity extends AppCompatActivity {
         if(!TextUtils.isEmpty(strName) && desiredMenu == null) {
             id = IDSingleton.getInstance().getIDMenu();
             menu = new Menu(id, name.getText().toString(), description.getText().toString());
-            MenuEditor.getInstance().saveMenu(menu);
+            menuEditorInstance.saveMenu(menu);
             startActivity(new Intent(this, MenuActivity.class));
             this.finish();
         } else if (!TextUtils.isEmpty(strName) && desiredMenu != null) {
@@ -73,7 +76,7 @@ public class MenuCreationActivity extends AppCompatActivity {
     }
 
     public void deleteMenu(View view) {
-        List<Menu> availableMenus = MenuEditor.getInstance().getSavedMenus();
+        List<Menu> availableMenus = menuEditorInstance.getSavedMenus();
         availableMenus.remove(desiredMenu);
         goBack(view);
     }

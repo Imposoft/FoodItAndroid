@@ -26,6 +26,7 @@ public class SectionActivity extends AppCompatActivity {
     ListView sectionList;
     Menu selectedMenu;
     private Bundle windowInfo;
+    MenuEditor menuEditorInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class SectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_section);
 
         windowInfo = getIntent().getExtras();
-
+        menuEditorInstance = MenuEditor.getInstance();
         sectionList = findViewById(R.id.listView_availableSections);
 
         //Obtener todas las secciones de todos los menus en una misma lista
@@ -89,7 +90,7 @@ public class SectionActivity extends AppCompatActivity {
     }
 
     private Menu getSelectedMenu(int id){
-        availableMenus = MenuEditor.getInstance().getSavedMenus();
+        availableMenus = menuEditorInstance.getSavedMenus();
         for (Menu menu : availableMenus)
             if(menu.getId() == id) return menu;
         return null;
