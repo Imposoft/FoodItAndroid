@@ -1,7 +1,9 @@
-package es.imposoft.foodit.model;
+package es.imposoft.foodit.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import es.imposoft.foodit.model.SectionDTO;
 
 public class Menu {
 
@@ -11,8 +13,12 @@ public class Menu {
     int id;
     boolean edited;
 
+    public Menu() {
+        this.sections = new ArrayList<>();
+    }
+
     public Menu(int id, String name, String description) {
-        sections = new ArrayList<>();
+        this.sections = new ArrayList<>();
         this.name = name;
         this.description = description;
         this.id = id;
@@ -73,12 +79,6 @@ public class Menu {
         this.edited = edited;
     }
 
-    public void setSectionsEdited(){
-        for (Section section : this.getSections()) {
-            section.setEdited(false);
-            section.setDishesEdited();
-        }
-    }
 
     @Override
     public String toString() {

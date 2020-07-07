@@ -1,23 +1,25 @@
 package es.imposoft.foodit.model;
 
-import androidx.annotation.Nullable;
+import android.media.Image;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Section {
+public class DishDTO {
 
     int id;
     String name, description;
-    List<Dish> dishes;
-    boolean edited;
+    List<Allergen> allergens;
+    double price;
+    Image image;
 
-    public Section(int id, String name, String description) {
+    public DishDTO() { }
+
+    public DishDTO(int id, String name, String description, List<Allergen> allergens, double price) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.dishes = new ArrayList<>();
-        edited = true;
+        this.allergens = allergens;
+        this.price = price;
     }
 
     public int getId() {
@@ -44,28 +46,28 @@ public class Section {
         this.description = description;
     }
 
-    public List<Dish> getDishes() {
-        return dishes;
+    public List<Allergen> getAllergens() {
+        return allergens;
     }
 
-    public void setDishes(List<Dish> dishes) {
-        this.dishes = dishes;
+    public void setAllergens(List<Allergen> allergens) {
+        this.allergens = allergens;
     }
 
-    public void addDishToSection(Dish dish) { this.dishes.add(dish); }
-
-    public boolean isEdited() {
-        return edited;
+    public double getPrice() {
+        return price;
     }
 
-    public void setEdited(boolean edited) {
-        this.edited = edited;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public void setDishesEdited(){
-        for (Dish dish : this.getDishes()) {
-            dish.setEdited(false);
-        }
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     @Override

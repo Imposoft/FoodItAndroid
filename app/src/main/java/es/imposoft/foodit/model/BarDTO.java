@@ -2,13 +2,13 @@ package es.imposoft.foodit.model;
 
 import java.util.List;
 
-public class Bar {
+public class BarDTO {
 
     int id;
     String name, description;
-    List<Menu> menus;
+    List<MenuDTO> menus;
 
-    public Bar(int id, String name, String description, List<Menu> menus) {
+    public BarDTO(int id, String name, String description, List<MenuDTO> menus) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -39,11 +39,11 @@ public class Bar {
         this.description = description;
     }
 
-    public List<Menu> getMenus() {
+    public List<MenuDTO> getMenus() {
         return menus;
     }
 
-    public void setMenus(List<Menu> menus) {
+    public void setMenus(List<MenuDTO> menus) {
         this.menus = menus;
     }
 

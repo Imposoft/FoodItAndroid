@@ -1,8 +1,10 @@
-package es.imposoft.foodit.model;
+package es.imposoft.foodit.entities;
 
 import android.media.Image;
 
 import java.util.List;
+
+import es.imposoft.foodit.model.Allergen;
 
 public class Dish {
 
@@ -12,6 +14,8 @@ public class Dish {
     double price;
     Image image;
     boolean edited;
+
+    public Dish() { }
 
     public Dish(int id, String name, String description, List<Allergen> allergens, double price) {
         this.id = id;
@@ -70,16 +74,16 @@ public class Dish {
         this.image = image;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
-
     public boolean isEdited() {
         return edited;
     }
 
     public void setEdited(boolean edited) {
         this.edited = edited;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

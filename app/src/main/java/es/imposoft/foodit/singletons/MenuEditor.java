@@ -1,7 +1,9 @@
-package es.imposoft.foodit.model;
+package es.imposoft.foodit.singletons;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import es.imposoft.foodit.entities.Menu;
 
 public class MenuEditor {
 

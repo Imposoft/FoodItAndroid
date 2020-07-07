@@ -1,4 +1,4 @@
-package es.imposoft.foodit.model;
+package es.imposoft.foodit.singletons;
 
 
 public class IDSingleton {

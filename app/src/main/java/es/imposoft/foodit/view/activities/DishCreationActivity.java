@@ -4,11 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,12 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.imposoft.foodit.R;
+import es.imposoft.foodit.entities.Dish;
+import es.imposoft.foodit.entities.Menu;
+import es.imposoft.foodit.entities.Section;
 import es.imposoft.foodit.model.Allergen;
-import es.imposoft.foodit.model.Dish;
-import es.imposoft.foodit.model.IDSingleton;
-import es.imposoft.foodit.model.Menu;
-import es.imposoft.foodit.model.MenuEditor;
-import es.imposoft.foodit.model.Section;
+import es.imposoft.foodit.model.DishDTO;
+import es.imposoft.foodit.singletons.IDSingleton;
+import es.imposoft.foodit.model.MenuDTO;
+import es.imposoft.foodit.singletons.MenuEditor;
+import es.imposoft.foodit.model.SectionDTO;
 
 public class DishCreationActivity extends AppCompatActivity {
 
@@ -128,7 +128,7 @@ public class DishCreationActivity extends AppCompatActivity {
 
     }
 
-    public void deleteMenu(View view) {
+    public void deleteDish(View view) {
         List<Dish> availableDishes = desiredSection.getDishes();
         availableDishes.remove(desiredDish);
         goBack(view);

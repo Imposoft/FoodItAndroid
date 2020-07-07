@@ -1,11 +1,11 @@
 package es.imposoft.foodit.model;
 
-public class User {
+public class UserDTO {
 
     int id;
     String name, username, password;
 
-    public User(int id, String name, String username, String password) {
+    public UserDTO(int id, String name, String username, String password) {
         this.id = id;
         this.name = name;
         this.username = username;

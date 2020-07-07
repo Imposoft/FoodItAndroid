@@ -12,10 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 import es.imposoft.foodit.R;
-import es.imposoft.foodit.model.IDSingleton;
-import es.imposoft.foodit.model.Menu;
-import es.imposoft.foodit.model.MenuEditor;
-import es.imposoft.foodit.model.Section;
+import es.imposoft.foodit.entities.Menu;
+import es.imposoft.foodit.entities.Section;
+import es.imposoft.foodit.singletons.IDSingleton;
+import es.imposoft.foodit.model.MenuDTO;
+import es.imposoft.foodit.singletons.MenuEditor;
+import es.imposoft.foodit.model.SectionDTO;
 
 public class SectionCreationActivity extends AppCompatActivity {
 
@@ -89,7 +91,7 @@ public class SectionCreationActivity extends AppCompatActivity {
 
     }
 
-    public void deleteMenu(View view) {
+    public void deleteSection(View view) {
         List<Section> availableSections = desiredMenu.getSections();
         availableSections.remove(desiredSection);
         goBack(view);

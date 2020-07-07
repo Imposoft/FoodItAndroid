@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.imposoft.foodit.R;
-import es.imposoft.foodit.model.Menu;
-import es.imposoft.foodit.model.MenuEditor;
-import es.imposoft.foodit.model.Section;
+import es.imposoft.foodit.entities.Menu;
+import es.imposoft.foodit.entities.Section;
+import es.imposoft.foodit.model.MenuDTO;
+import es.imposoft.foodit.singletons.MenuEditor;
+import es.imposoft.foodit.model.SectionDTO;
 
 public class SectionActivity extends AppCompatActivity {
 
