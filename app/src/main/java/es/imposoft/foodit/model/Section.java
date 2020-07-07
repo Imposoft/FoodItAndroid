@@ -9,22 +9,15 @@ public class Section {
 
     int id;
     String name, description;
-    List<Dish> dishes = new ArrayList<>();
-    static List<Section> sections;
-
-
-    public Section(int id, String name, String description, @Nullable List<Dish> dishes) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.dishes = dishes;
-    }
+    List<Dish> dishes;
+    boolean edited;
 
     public Section(int id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.dishes = new ArrayList<>();
+        edited = true;
     }
 
     public int getId() {
@@ -61,10 +54,23 @@ public class Section {
 
     public void addDishToSection(Dish dish) { this.dishes.add(dish); }
 
-    public List<Section> getSectionsFromMenu() { return null; }
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
+    }
+
+    public void setDishesEdited(){
+        for (Dish dish : this.getDishes()) {
+            dish.setEdited(false);
+        }
+    }
 
     @Override
     public String toString() {
         return name;
     }
+
 }

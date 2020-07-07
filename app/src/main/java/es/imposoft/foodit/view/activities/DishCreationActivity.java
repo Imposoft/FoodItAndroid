@@ -100,6 +100,8 @@ public class DishCreationActivity extends AppCompatActivity {
             id = IDSingleton.getInstance().getIDDish();
             Dish dish = new Dish(id, name.getText().toString(), description.getText().toString(), allergenList, Double.parseDouble(String.valueOf(price.getText())));
             desiredSection.addDishToSection(dish);
+            desiredMenu.setEdited(true);
+            desiredSection.setEdited(true);
             Intent intent = new Intent(this, DishActivity.class);
             intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
             intent.putExtra("SectionID", (int) windowInfo.get("SectionID"));
@@ -110,6 +112,9 @@ public class DishCreationActivity extends AppCompatActivity {
             desiredDish.setName(name.getText().toString());
             desiredDish.setPrice(Double.parseDouble(price.getText().toString()));
             desiredDish.setAllergens(allergenList);
+            desiredMenu.setEdited(true);
+            desiredSection.setEdited(true);
+            desiredDish.setEdited(true);
             Intent intent = new Intent(this, DishActivity.class);
             intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
             intent.putExtra("SectionID", (int) windowInfo.get("SectionID"));

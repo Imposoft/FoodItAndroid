@@ -82,7 +82,10 @@ public class SectionActivity extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent){
                 View view = super.getView(position, convertView, parent);
-                if(availableSections.get(position).getId() < 0) { view.setBackgroundColor(Color.YELLOW); }
+                //if(availableSections.get(position).getId() < 0) { view.setBackgroundColor(Color.YELLOW); }
+                if(availableSections.get(position).isEdited()) {
+                    view.setBackgroundColor(Color.YELLOW);
+                }
                 return view;
             }
         };

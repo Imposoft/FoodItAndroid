@@ -18,7 +18,6 @@ import es.imposoft.foodit.model.MenuEditor;
 
 public class MenuCreationActivity extends AppCompatActivity {
 
-    Menu menu;
     EditText name, description;
     int id;
     private Bundle windowInfo;
@@ -61,13 +60,14 @@ public class MenuCreationActivity extends AppCompatActivity {
         String strName = name.getText().toString();
         if(!TextUtils.isEmpty(strName) && desiredMenu == null) {
             id = IDSingleton.getInstance().getIDMenu();
-            menu = new Menu(id, name.getText().toString(), description.getText().toString());
+            Menu menu = new Menu(id, name.getText().toString(), description.getText().toString());
             menuEditorInstance.saveMenu(menu);
             startActivity(new Intent(this, MenuActivity.class));
             this.finish();
         } else if (!TextUtils.isEmpty(strName) && desiredMenu != null) {
             desiredMenu.setDescription(description.getText().toString());
             desiredMenu.setName(name.getText().toString());
+            desiredMenu.setEdited(true);
             startActivity(new Intent(this, MenuActivity.class));
             this.finish();
         } else {

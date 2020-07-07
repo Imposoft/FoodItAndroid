@@ -83,7 +83,10 @@ public class DishActivity extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent){
                 View view = super.getView(position, convertView, parent);
-                if(availableDishes.get(position).getId() < 0) { view.setBackgroundColor(Color.YELLOW); }
+                //if(availableDishes.get(position).getId() < 0) { view.setBackgroundColor(Color.YELLOW); }
+                if(availableDishes.get(position).isEdited()) {
+                    view.setBackgroundColor(Color.YELLOW);
+                }
                 return view;
             }
         };

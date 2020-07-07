@@ -11,6 +11,7 @@ public class Dish {
     List<Allergen> allergens;
     double price;
     Image image;
+    boolean edited;
 
     public Dish(int id, String name, String description, List<Allergen> allergens, double price) {
         this.id = id;
@@ -18,6 +19,7 @@ public class Dish {
         this.description = description;
         this.allergens = allergens;
         this.price = price;
+        edited =  true;
     }
 
     public int getId() {
@@ -71,5 +73,13 @@ public class Dish {
     @Override
     public String toString() {
         return name;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
     }
 }

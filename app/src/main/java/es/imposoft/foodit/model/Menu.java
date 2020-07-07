@@ -9,12 +9,14 @@ public class Menu {
     List<Section> sections;
     String name, description;
     int id;
+    boolean edited;
 
     public Menu(int id, String name, String description) {
         sections = new ArrayList<>();
         this.name = name;
         this.description = description;
         this.id = id;
+        edited = true;
     }
 
     public List<Section> getSections() {
@@ -61,6 +63,21 @@ public class Menu {
 
     public void setMenuText(String menuText) {
         this.menuText = menuText;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
+    }
+
+    public void setSectionsEdited(){
+        for (Section section : this.getSections()) {
+            section.setEdited(false);
+            section.setDishesEdited();
+        }
     }
 
     @Override

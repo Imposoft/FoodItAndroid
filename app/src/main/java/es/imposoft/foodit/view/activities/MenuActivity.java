@@ -74,8 +74,11 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void saveMenus(View view) {
-        for (Menu menu : availableMenus)
+        for (Menu menu : availableMenus) {
+            menu.setEdited(false);
+            menu.setSectionsEdited();
             postTestMenu(menu);
+        }
     }
 
     private void loadMenu() {
@@ -103,11 +106,11 @@ public class MenuActivity extends AppCompatActivity {
                 int posicion = 0;
                 for (Integer id : idLoadedMenus) {
                     if (!idAvailableMenus.contains(id))
+                        //menus.get(posicion).setEdited(false);
                         menuEditorInstance.saveMenu(menus.get(posicion));
                     posicion++;
                 }
 
-                //availableMenus.clear();
                 availableMenus = menuEditorInstance.getSavedMenus();
                 Toast.makeText(MenuActivity.this, "Éxito: " + response.code(), Toast.LENGTH_SHORT).show();
                 fillMenuListView();
@@ -178,7 +181,8 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
-                if (availableMenus.get(position).getId() < 0) {
+                //if (availableMenus.get(position).getId() < 0) {
+                if(availableMenus.get(position).isEdited()) {
                     view.setBackgroundColor(Color.YELLOW);
                 }
                 return view;

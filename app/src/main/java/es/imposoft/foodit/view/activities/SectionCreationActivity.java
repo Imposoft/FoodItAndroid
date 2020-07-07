@@ -69,6 +69,7 @@ public class SectionCreationActivity extends AppCompatActivity {
             id = IDSingleton.getInstance().getIDSection();
             Section section = new Section(id, name.getText().toString(), description.getText().toString());
             desiredMenu.addSectionToMenu(section);
+            desiredMenu.setEdited(true);
             Intent intent = new Intent(this, SectionActivity.class);
             intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
             startActivity(intent);
@@ -76,6 +77,8 @@ public class SectionCreationActivity extends AppCompatActivity {
         } else if (!TextUtils.isEmpty(strName) && desiredSection != null) {
             desiredSection.setDescription(description.getText().toString());
             desiredSection.setName(name.getText().toString());
+            desiredMenu.setEdited(true);
+            desiredSection.setEdited(true);
             Intent intent = new Intent(this, SectionActivity.class);
             intent.putExtra("MenuID", (int) windowInfo.get("MenuID"));
             startActivity(intent);
