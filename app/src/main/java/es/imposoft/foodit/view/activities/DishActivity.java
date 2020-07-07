@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -44,6 +45,8 @@ public class DishActivity extends AppCompatActivity {
         windowInfo = getIntent().getExtras();
         menuEditorInstance = MenuEditor.getInstance();
         dishList = findViewById(R.id.listView_availableDishes);
+        Button noFunction = findViewById(R.id.button2);
+        noFunction.setVisibility(View.GONE);
 
         int menuID = (int) windowInfo.get("MenuID");
         int sectionID = (int) windowInfo.get("SectionID");

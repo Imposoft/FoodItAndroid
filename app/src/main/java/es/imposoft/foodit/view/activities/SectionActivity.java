@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +41,8 @@ public class SectionActivity extends AppCompatActivity {
         windowInfo = getIntent().getExtras();
         menuEditorInstance = MenuEditor.getInstance();
         sectionList = findViewById(R.id.listView_availableSections);
+        Button addButton = findViewById(R.id.button_addToMenu);
+        addButton.setVisibility(View.GONE);
 
         //Obtener todas las secciones de todos los menus en una misma lista
         /*for (Menu menu : availableMenus)

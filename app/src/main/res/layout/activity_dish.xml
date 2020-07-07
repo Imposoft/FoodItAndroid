@@ -77,10 +77,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="createDish"
         android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        android:focusable="true"
+        android:onClick="createDish"
+        app:layout_constraintBottom_toTopOf="@+id/button_editSection"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/add_plus"
-        android:focusable="true" />
+        app:srcCompat="@drawable/add_plus" />
 </androidx.constraintlayout.widget.ConstraintLayout>
