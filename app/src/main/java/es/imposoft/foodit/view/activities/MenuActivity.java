@@ -83,7 +83,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private void loadMenu() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://imposoft.es:8080/")
+                .baseUrl("https://imposoft.es:443/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -126,7 +126,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private void postTestMenu(MenuDTO menu) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://imposoft.es:8080/")
+                .baseUrl("https://imposoft.es:443/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -152,7 +152,7 @@ public class MenuActivity extends AppCompatActivity {
 
     protected void deleteMenu(int id) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://imposoft.es:8080/")
+                .baseUrl("https://imposoft.es:443/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
