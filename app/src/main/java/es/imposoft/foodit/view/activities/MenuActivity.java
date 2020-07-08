@@ -45,13 +45,11 @@ public class MenuActivity extends AppCompatActivity {
         menuEditorInstance = MenuEditor.getInstance();
         availableMenus = menuEditorInstance.getSavedMenus();
 
-        //fillMenuListView();
-
         //TODO: comprobar si este codigo borra bien los menus
         windowInfo = getIntent().getExtras();
         if(windowInfo != null) {
             if(windowInfo.get("MenuIDtoDelete") != null)
-                deleteMenu((int)windowInfo.get("MenuIDtoDelete"));
+                deleteMenu((int) windowInfo.get("MenuIDtoDelete"));
         }
 
         loadMenu();
@@ -79,11 +77,12 @@ public class MenuActivity extends AppCompatActivity {
         for (Menu menu : availableMenus) {
             postTestMenu(ConverterUtil.convertMenuDTO(menu));
         }
+        //loadMenu();
     }
 
     private void loadMenu() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://imposoft.es:8080/")
+                .baseUrl("http://imposoft.es:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -126,7 +125,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private void postTestMenu(MenuDTO menu) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://imposoft.es:8080/")
+                .baseUrl("http://imposoft.es:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -152,7 +151,7 @@ public class MenuActivity extends AppCompatActivity {
 
     protected void deleteMenu(int id) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://imposoft.es:8080/")
+                .baseUrl("http://imposoft.es:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
