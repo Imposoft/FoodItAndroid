@@ -15,6 +15,9 @@ public interface FoodItAPI {
     @POST("createMenu")
     Call<MenuDTO> createNewMenu(@Body MenuDTO menu);
 
+    @POST("createMenus")
+    Call<List<MenuDTO>> createMenus(List<MenuDTO> menus);
+
     @GET("loadMenu")
     Call<MenuDTO> loadMenu(@Query("id") int id);
 
@@ -23,5 +26,6 @@ public interface FoodItAPI {
 
     @DELETE("deleteMenu")
     Call<Void> deleteMenu(@Path("id") int menuId);
+
 
 }

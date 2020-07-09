@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".view.activities.UserLoginActivity"
+            android:label="@string/title_activity_user_login"
+            android:theme="@style/generalnotitle"/>
         <activity android:name=".view.activities.DishActivity" />
         <activity android:name=".view.activities.SectionActivity" />
         <activity android:name=".view.activities.MenuActivity" />

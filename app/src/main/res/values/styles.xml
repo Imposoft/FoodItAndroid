@@ -21,4 +21,10 @@
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
+    <style name="generalnotitle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
 </resources>

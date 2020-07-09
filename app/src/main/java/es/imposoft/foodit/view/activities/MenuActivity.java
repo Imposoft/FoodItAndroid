@@ -74,9 +74,11 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void saveMenus(View view) {
+        List<MenuDTO> menusToPost = new ArrayList<>();
         for (Menu menu : availableMenus) {
-            postTestMenu(ConverterUtil.convertMenuDTO(menu));
+            menusToPost.add(ConverterUtil.convertMenuDTO(menu));
         }
+        postMenus(menusToPost);
         //loadMenu();
     }
 
@@ -105,7 +107,6 @@ public class MenuActivity extends AppCompatActivity {
                 int posicion = 0;
                 for (Integer id : idLoadedMenus) {
                     if (!idAvailableMenus.contains(id))
-                        //menus.get(posicion).setEdited(false);
                         menuEditorInstance.saveMenu(ConverterUtil.convertMenu(menus.get(posicion)));
                     posicion++;
                 }
@@ -123,26 +124,28 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    private void postTestMenu(MenuDTO menu) {
+    private void postMenus(List<MenuDTO> menus) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://imposoft.es:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         FoodItAPI foodItAPI = retrofit.create(FoodItAPI.class);
-        Call<MenuDTO> menuCall = foodItAPI.createNewMenu(menu);
-        menuCall.enqueue(new Callback<MenuDTO>() {
+        //Call<MenuDTO> menuCall = foodItAPI.createNewMenu(menu);
+        Call<List<MenuDTO>> menusCall = foodItAPI.createMenus(menus);
+        menusCall.enqueue(new Callback<List<MenuDTO>>() {
             @Override
-            public void onResponse(Call<MenuDTO> call, Response<MenuDTO> response) {
+            public void onResponse(Call<List<MenuDTO>> call, Response<List<MenuDTO>> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(MenuActivity.this, "Error: " + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Toast.makeText(MenuActivity.this, "Éxito: " + response.code(), Toast.LENGTH_SHORT).show();
+                loadMenu();
             }
 
             @Override
-            public void onFailure(Call<MenuDTO> call, Throwable t) {
+            public void onFailure(Call<List<MenuDTO>> call, Throwable t) {
                 Toast.makeText(MenuActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
