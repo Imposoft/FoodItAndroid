@@ -52,4 +52,6 @@
     <string name="repeat_password">Repeat Password</string>
     <string name="login">Login</string>
     <string name="create_account">No account yet? Create One</string>
+    <string name="availableBars">Bares disponibles</string>
+    <string name="bar">Bar / Restaurante</string>
 </resources>

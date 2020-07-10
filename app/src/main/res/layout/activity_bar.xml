@@ -4,19 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.MenuActivity">
-
-    <ImageButton
-        android:id="@+id/button_goBack2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/white"
-        android:onClick="goBack"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+    tools:context=".view.activities.BarActivity">
 
     <TextView
         android:id="@+id/textView3"
@@ -24,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/availableMenus"
+        android:text="@string/availableBars"
         style="@style/TextAppearance.AppCompat.Title"
         android:textSize="24sp"
         app:autoSizeMinTextSize="24sp"
@@ -32,53 +20,53 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_createMenu"
+        android:id="@+id/button_createBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="createMenu"
-        app:layout_constraintBottom_toTopOf="@+id/button_saveMenu"
+        android:onClick="createBar"
+        app:layout_constraintBottom_toTopOf="@+id/button_saveBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/add_plus" />
 
     <Button
-        android:id="@+id/button_loadMenu"
+        android:id="@+id/button_loadBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="loadMenus"
+        android:onClick="loadBars"
         android:text="@string/load"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_saveMenu"
+        app:layout_constraintEnd_toStartOf="@+id/button_saveBar"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_saveMenu"
+        android:id="@+id/button_saveBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="saveMenus"
+        android:onClick="saveBars"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_loadMenu" />
+        app:layout_constraintStart_toEndOf="@+id/button_loadBar" />
 
     <ListView
-        android:id="@+id/listView_availableMenu"
+        android:id="@+id/listView_availableBars"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_createMenu"
+        app:layout_constraintBottom_toTopOf="@+id/button_createBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />

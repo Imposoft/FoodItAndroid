@@ -1,18 +1,18 @@
-package es.imposoft.foodit.model;
+package es.imposoft.foodit.entities;
 
-public class UserDTO {
+public class User {
 
     int id;
     String name, username, password;
 
-    public UserDTO(int id, String name, String username, String password) {
+    public User(int id, String username, String password) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
     }
 
-    public UserDTO() { }
+    public User() { }
 
     public int getId() {
         return id;

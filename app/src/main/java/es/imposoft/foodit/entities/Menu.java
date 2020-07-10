@@ -3,7 +3,6 @@ package es.imposoft.foodit.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.imposoft.foodit.model.SectionDTO;
 
 public class Menu {
 

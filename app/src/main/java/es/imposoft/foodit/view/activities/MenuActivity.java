@@ -41,7 +41,7 @@ public class MenuActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_menu);
 
-        menuList = findViewById(R.id.listView_availableMenus);
+        menuList = findViewById(R.id.listView_availableMenu);
         menuEditorInstance = MenuEditor.getInstance();
         availableMenus = menuEditorInstance.getSavedMenus();
 
@@ -79,12 +79,11 @@ public class MenuActivity extends AppCompatActivity {
             menusToPost.add(ConverterUtil.convertMenuDTO(menu));
         }
         postMenus(menusToPost);
-        //loadMenu();
     }
 
     private void loadMenu() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://imposoft.es:8080/")
+                .baseUrl("http://imposoft.es:8080/") // baseUrl("http://imposoft.es/" + user.getUsername() + bar.getName())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -114,7 +113,7 @@ public class MenuActivity extends AppCompatActivity {
                 availableMenus = menuEditorInstance.getSavedMenus();
                 Toast.makeText(MenuActivity.this, "Éxito: " + response.code(), Toast.LENGTH_SHORT).show();
                 fillMenuListView();
-                //refresh();
+
             }
 
             @Override
@@ -126,12 +125,11 @@ public class MenuActivity extends AppCompatActivity {
 
     private void postMenus(List<MenuDTO> menus) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://imposoft.es:8080/")
+                .baseUrl("http://imposoft.es:8080/") // baseUrl("http://imposoft.es/" + user.getUsername() + bar.getName())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         FoodItAPI foodItAPI = retrofit.create(FoodItAPI.class);
-        //Call<MenuDTO> menuCall = foodItAPI.createNewMenu(menu);
         Call<List<MenuDTO>> menusCall = foodItAPI.createMenus(menus);
         menusCall.enqueue(new Callback<List<MenuDTO>>() {
             @Override
@@ -141,6 +139,7 @@ public class MenuActivity extends AppCompatActivity {
                     return;
                 }
                 Toast.makeText(MenuActivity.this, "Éxito: " + response.code(), Toast.LENGTH_SHORT).show();
+                menuEditorInstance.getSavedMenus().clear();
                 loadMenu();
             }
 
@@ -154,7 +153,7 @@ public class MenuActivity extends AppCompatActivity {
 
     protected void deleteMenu(int id) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://imposoft.es:8080/")
+                .baseUrl("http://imposoft.es:8080/") // baseUrl("http://imposoft.es/" + user.getUsername() + bar.getName())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -183,7 +182,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
-                //if (availableMenus.get(position).getId() < 0) {
                 if(availableMenus.get(position).isEdited()) {
                     view.setBackgroundColor(Color.YELLOW);
                 }
@@ -191,6 +189,12 @@ public class MenuActivity extends AppCompatActivity {
             }
         };
         menuList.setAdapter(arrayAdapter);
+    }
+
+    public void goBack(View view) {
+        Intent intent = new Intent(this, BarActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
     private void refresh() {
@@ -201,4 +205,5 @@ public class MenuActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         startActivity(intent);
     }
+
 }

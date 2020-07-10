@@ -1,11 +1,15 @@
 package es.imposoft.foodit.logic.converter;
 
+import es.imposoft.foodit.entities.Bar;
 import es.imposoft.foodit.entities.Dish;
 import es.imposoft.foodit.entities.Menu;
 import es.imposoft.foodit.entities.Section;
+import es.imposoft.foodit.entities.User;
+import es.imposoft.foodit.model.BarDTO;
 import es.imposoft.foodit.model.DishDTO;
 import es.imposoft.foodit.model.MenuDTO;
 import es.imposoft.foodit.model.SectionDTO;
+import es.imposoft.foodit.model.UserDTO;
 
 public class ConverterUtil {
 
@@ -58,6 +62,32 @@ public class ConverterUtil {
             convertedMenu.addSectionToMenu(convertedSection);
         }
         return convertedMenu;
+    }
+
+    public static User convertUser(UserDTO userToConvert){
+        User convertedUser = new User();
+        convertedUser.setUsername(userToConvert.getUsername());
+        convertedUser.setPassword(userToConvert.getPassword());
+        convertedUser.setId(userToConvert.getId());
+        return convertedUser;
+    }
+
+    public static UserDTO convertUserDTO(User userToConvert){
+        UserDTO convertedUser = new UserDTO();
+        convertedUser.setUsername(userToConvert.getUsername());
+        convertedUser.setPassword(userToConvert.getPassword());
+        convertedUser.setId(userToConvert.getId());
+        return convertedUser;
+    }
+
+    public static Bar convertBar(BarDTO barToConvert) {
+        Bar convertedBar = new Bar();
+        return null;
+
+    }
+
+    public static BarDTO convertBarDTO(Bar barToConvert) {
+        return null;
     }
 
 }

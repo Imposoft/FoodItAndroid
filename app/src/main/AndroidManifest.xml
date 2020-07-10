@@ -13,9 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".view.activities.UserRegisterActivity"
-            android:theme="@style/generalnotitle" />
+        <activity android:name=".view.activities.BarCreationActivity"></activity>
         <activity
             android:name=".view.activities.UserLoginActivity"
             android:theme="@style/generalnotitle" />
