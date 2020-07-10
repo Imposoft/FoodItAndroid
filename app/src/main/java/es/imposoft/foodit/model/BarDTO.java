@@ -15,6 +15,9 @@ public class BarDTO {
         this.menus = menus;
     }
 
+    public BarDTO() {
+    }
+
     public int getId() {
         return id;
     }

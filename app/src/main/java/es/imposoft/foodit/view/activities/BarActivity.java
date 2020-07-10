@@ -35,7 +35,6 @@ public class BarActivity extends AppCompatActivity {
     List<Bar> availableBars = new ArrayList<>();
     ListView barList;
     BarEditor barEditorInstance;
-    private Bundle windowInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class BarActivity extends AppCompatActivity {
         availableBars = barEditorInstance.getSavedBars();
 
         //TODO: comprobar si este codigo borra bien los menus
-        windowInfo = getIntent().getExtras();
+        Bundle windowInfo = getIntent().getExtras();
         if(windowInfo != null) {
             if(windowInfo.get("BarIDtoDelete") != null) {}
                 deleteBar((int) windowInfo.get("BarIDtoDelete"));
@@ -58,8 +57,8 @@ public class BarActivity extends AppCompatActivity {
 
         //here u can use clickListener
         barList.setOnItemClickListener((parent, view, position, id) -> {
-            Intent intent = new Intent(getApplicationContext(), SectionActivity.class);
-            intent.putExtra("MenuID", availableBars.get(position).getId());
+            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+            intent.putExtra("BarID", availableBars.get(position).getId());
             startActivity(intent);
             finish();
         });

@@ -34,7 +34,7 @@ public class BarCreationActivity extends AppCompatActivity {
         if (windowInfo != null) {
             List<Bar> bars = barEditorInstance.getSavedBars();
             for (Bar bar : bars) {
-                if (bar.getId() == (int) windowInfo.get("MenuID")) desiredBar = bar;
+                if (bar.getId() == (int) windowInfo.get("BarID")) desiredBar = bar;
             }
         }
 

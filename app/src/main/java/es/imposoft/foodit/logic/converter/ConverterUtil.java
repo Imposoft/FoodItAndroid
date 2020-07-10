@@ -82,12 +82,18 @@ public class ConverterUtil {
 
     public static Bar convertBar(BarDTO barToConvert) {
         Bar convertedBar = new Bar();
-        return null;
+        convertedBar.setId(barToConvert.getId());
+        convertedBar.setName(barToConvert.getName());
+        convertedBar.setEdited(false);
+        return convertedBar;
 
     }
 
     public static BarDTO convertBarDTO(Bar barToConvert) {
-        return null;
+        BarDTO convertedBar = new BarDTO();
+        convertedBar.setId(barToConvert.getId());
+        convertedBar.setName(barToConvert.getName());
+        return convertedBar;
     }
 
 }
