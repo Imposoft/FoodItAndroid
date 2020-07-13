@@ -84,6 +84,7 @@ public class ConverterUtil {
         Bar convertedBar = new Bar();
         convertedBar.setId(barToConvert.getId());
         convertedBar.setName(barToConvert.getName());
+        convertedBar.setDescription(barToConvert.getDescription());
         convertedBar.setEdited(false);
         return convertedBar;
 
@@ -93,6 +94,7 @@ public class ConverterUtil {
         BarDTO convertedBar = new BarDTO();
         convertedBar.setId(barToConvert.getId());
         convertedBar.setName(barToConvert.getName());
+        convertedBar.setDescription(barToConvert.getDescription());
         return convertedBar;
     }
 
